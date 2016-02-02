@@ -10,7 +10,9 @@ var Game = function (canvasId, tileSize, width, height) { // Master class
 
 Game.reset = function () { //Resets Game
 	this.buildMap()
-}  Game.buildMap = function() {
+}  
+
+Game.buildMap = function() {
 	for (var x = 0; x < this.width; x++) {
 		this.tileArray[x] = []
 		for (var y = 0; y < this.height; y++) {
@@ -27,6 +29,7 @@ Game.reset = function () { //Resets Game
 		this.tileArray[4][i] = "path"
 	}
 	this.nodeArray = [[12, 0], [12, 8], [4, 8], [4, 14]] //Sets location of nodes
+
 }  var Map = function(id, tileSize, width, height) { // Constructer
 	this.canvas = document.getElementById(id)
 	this.canvas.width = width * tileSize //Width and height represented in tiles
