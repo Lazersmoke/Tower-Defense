@@ -24,15 +24,15 @@ Enemy.prototype = {
 				}
 			}
 		}
-		if (this.x != tileToPixel(this.nodeArray[this.nodeNum][1])) { //If Y need to change
+		if (this.y != tileToPixel(this.nodeArray[this.nodeNum][1])) { //If Y need to change
 			if (Math.abs(tileToPixel(this.y - this.nodeArray[this.nodeNum][1])) < this.speed) { //If Y is closer than speed
 				this.y = this.nodeArray[this.nodeNum][1] * game.tileSize
 			}
 			else {
-				if (this.x < this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][1])]) { //Move Y up
+				if (this.y < this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][1])]) { //Move Y up
 					this.y += speed
 				}
-				if (this.x > this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][1])]) { //Move Y down
+				if (this.y > this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][1])]) { //Move Y down
 					this.y -= speed
 				}
 			}
