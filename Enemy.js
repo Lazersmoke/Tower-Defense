@@ -40,7 +40,7 @@ Enemy.prototype = {
 				}
 			}
 		}
-		game.map.drawImage("grass", this.x - (game.map.tileSize / 2), this.y - (game.map.tileSize / 2))
+		game.map.drawImage("enemy", this.x - (game.map.tileSize / 2), this.y - (game.map.tileSize / 2))
 		if (this.x == tileToPixel(this.nodeArray[this.nodeNum][0]) && this.y == tileToPixel(this.nodeArray[this.nodeNum][1]) && this.nodeNum < this.nodeArray.length) { // If at node
 			this.nodeNum++
 		}
