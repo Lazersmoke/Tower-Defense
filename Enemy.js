@@ -36,6 +36,7 @@ Enemy.prototype = {
 					this.y -= this.speed
 				}
 			}
+			alert(this.y)
 		}
 		if (this.x == tileToPixel(this.nodeArray[this.nodeNum][0]) && this.y == tileToPixel(this.nodeArray[this.nodeNum][1])) { // If at node
 			this.nodeNum++
