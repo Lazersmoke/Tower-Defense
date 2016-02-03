@@ -11,7 +11,7 @@ Enemy.prototype = {
 	constructor: Enemy,
 	enemyTick: function () { //Tick
 		if (this.x != this.nodeArray[this.nodeNum][0] * game.tileSize) { //If X need to change
-			if (Math.abs(this.x - this.nodeArray[this.nodeNum][0] * game.tileSize) < speed) { //If X is closer than speed
+			if (Math.abs(this.x - this.nodeArray[this.nodeNum][0] * game.tileSize) < this.speed) { //If X is closer than speed
 				this.x = this.nodeArray[this.nodeNum][0] * game.tileSize
 			}
 			else {
@@ -24,7 +24,7 @@ Enemy.prototype = {
 			}
 		}
 		if (this.y != this.nodeArray[this.nodeNum][1] * game.tileSize) { //If Y need to change
-			if (Math.abs(this.y - this.nodeArray[this.nodeNum][1] * game.tileSize) < speed) { //If Y is closer than speed
+			if (Math.abs(this.y - this.nodeArray[this.nodeNum][1] * game.tileSize) < this.speed) { //If Y is closer than speed
 				this.y = this.nodeArray[this.nodeNum][1] * game.tileSize
 			}
 			else {
