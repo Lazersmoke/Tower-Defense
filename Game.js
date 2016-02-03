@@ -9,7 +9,7 @@ Game.prototype.resetGame = function () { //Resets Game
 	this.buildMap()
 }  
 
-Game.prototype.buildMap = function() {
+Game.prototype.buildMap = function() {//TODO: procedural generation later(TM)
 	for (var x = 0; x < this.map.width; x++) {
 		this.tileArray[x] = []
 		for (var y = 0; y < this.map.height; y++) {
