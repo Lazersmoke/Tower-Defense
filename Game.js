@@ -3,6 +3,7 @@ var Game = function (canvasId, tileSize, width, height) { // Master class
 	this.resetGame()
 	this.tickrate = 25
 	this.enemies = new Enemies()
+        setInterval(this.tick(), 1000 / this.tickRate)
 }
 
 Game.prototype = {
