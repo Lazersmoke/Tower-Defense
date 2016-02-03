@@ -9,7 +9,7 @@ Game.prototype.resetGame = function () { //Resets Game
 	this.buildMap()
 }  
 
-Game.prototype.buildMap = function() {/*
+Game.prototype.buildMap = function() {
 	for (var x = 0; x < this.width; x++) {
 		this.tileArray[x] = []
 		for (var y = 0; y < this.height; y++) {
@@ -25,5 +25,5 @@ Game.prototype.buildMap = function() {/*
 	for (var i = 9; i < 15; i++) {
 		this.tileArray[4][i] = "path"
 	}
-	this.nodeArray = [[12, 0], [12, 8], [4, 8], [4, 14]] //Sets location of nodes*/
+	this.nodeArray = [[12, 0], [12, 8], [4, 8], [4, 14]] //Sets location of nodes
 }  
