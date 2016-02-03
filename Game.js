@@ -11,15 +11,19 @@ Game.prototype = {
 	},
 	tick: function(){
 		this.preTick();
-		Enemy.enemiesTick();
-		Tower.towersTick();
-		Map.UITick();
+		//Enemy.enemiesTick();
+		Tower.tickTowers();
 		this.postTick();
 	},
 	preTick: function(){
 	
 	},
 	postTick: function(){
-	
+	//All rendering things:
+		Map.UITick();
+		Tower.renderTowers();
 	}
 }
+Game.prototype.resetGame = function () { //Resets Game
+	this.map.buildMap()
+} 
