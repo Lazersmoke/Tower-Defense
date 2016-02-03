@@ -1,6 +1,5 @@
 game = new Game("map", 64, 15, 15)
 game.map.drawTiles()
-setInterval(game.tick(), 1000 / this.tickRate)
 game.enemies.spawnEnemy ("John Cena", tileToPixel(game.map.getNodeArray()[0][0]), tileToPixel(game.map.getNodeArray()[0][1]), game.map.nodeArray, 5)
 
 function tileToPixel(cord) {
