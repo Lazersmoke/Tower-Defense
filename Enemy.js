@@ -13,7 +13,7 @@ Enemy.prototype = {
 		alert("Enemy Tick")
 		alert("Enemy Tick")
 		if (this.x != tileToPixel(this.nodeArray[this.nodeNum][0])) { //If X need to change
-			if (Math.abs(this.x - tileToPixel(this.nodeArray[this.nodeNum][0]) < this.speed) { //If X is closer than speed
+			if (Math.abs(this.x - tileToPixel(this.nodeArray[this.nodeNum][0]) < this.speed)) { //If X is closer than speed
 				this.x = this.nodeArray[this.nodeNum][0] * game.tileSize
 			}
 			else {
@@ -26,7 +26,7 @@ Enemy.prototype = {
 			}
 		}
 		if (this.y != this.nodeArray[this.nodeNum][1] * game.tileSize) { //If Y need to change
-			if (Math.abs(tileToPixel(this.y - this.nodeArray[this.nodeNum][1])) < this.speed) { //If Y is closer than speed
+			if (Math.abs(tileToPixel(this.y - this.nodeArray[this.nodeNum][1])) < this.speed)) { //If Y is closer than speed
 				this.y = this.nodeArray[this.nodeNum][1] * game.tileSize
 			}
 			else {
