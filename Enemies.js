@@ -3,7 +3,7 @@ var Enemies =  function () {
 }
 
 Enemies.prototype = {
-	constructer: Enemies,
+	constructor: Enemies,
 	spawnEnemy: function (type, x, y, nodeArray, speed) {
 		this.enemiesArray.push(new Enemy(type, x, y, nodeArray, speed))
 	}
