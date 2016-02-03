@@ -24,7 +24,7 @@ Enemy.prototype = {
 				}
 			}
 		}
-		if (this.y != this.nodeArray[this.nodeNum][1] * game.tileSize) { //If Y need to change
+		if (this.x != tileToPixel(this.nodeArray[this.nodeNum][1])) { //If Y need to change
 			if (Math.abs(tileToPixel(this.y - this.nodeArray[this.nodeNum][1])) < this.speed)) { //If Y is closer than speed
 				this.y = this.nodeArray[this.nodeNum][1] * game.tileSize
 			}
