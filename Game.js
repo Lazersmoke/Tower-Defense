@@ -11,7 +11,6 @@ Game.prototype = {
 		this.map.buildMap()
 	},
 	tick: function(){
-		alert("tick")
 		this.preTick();
 		this.enemies.enemiesTick();
 		Tower.tickTowers();
