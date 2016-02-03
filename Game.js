@@ -22,8 +22,8 @@ Game.prototype = {
 	},
 	postTick: function(){
 	//All rendering things:
-		map.clear()
-		map.UITick();
+		this.map.clear()
+		Map.UITick();
 		Tower.renderTowers();
 	}
 }
