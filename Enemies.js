@@ -11,7 +11,7 @@ Enemies.prototype = {
 		this.enemiesArray.splice(this.enemiesArray.indexOf(id), 1)
 	},
 	enemiesTick: function () {
-		for (i in enemiesArray) {
+		for (i in this.enemiesArray) {
 			this.enemiesArray[i].enemyTick()
 		}
 	}
