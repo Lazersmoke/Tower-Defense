@@ -10,11 +10,11 @@ Game.prototype = {
 		this.map.buildMap()
 	},
 	tick: function(){
-		preTick();
-		enemiesTick();
-		towersTick();
-		UITick();
-		postTick();
+		this.preTick();
+		Enemy.enemiesTick();
+		Tower.towersTick();
+		Map.UITick();
+		this.postTick();
 	},
 	preTick: function(){
 	

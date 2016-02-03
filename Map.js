@@ -11,7 +11,9 @@ var Map = function(id, tileSize, width, height) { // Constructer
 	this.tileArray = []
 	this.nodeArray = [] //Tells enemies where to go
 }
-
+Map.UITick = function(){
+	//NO-OP
+}
 Map.prototype = {
 	constructor: Map,
 	drawImage: function (imgId, x, y) { //Draws Image
@@ -22,7 +24,7 @@ Map.prototype = {
 	drawTiles: function () { //Draws Tiles
 		for (var x = 0; x < this.width; x++) {
 			for (var y = 0; y < this.height; y++) {
-				this.drawTile(game.tileArray[x][y], x, y)
+				this.drawTile(this.tileArray[x][y], x, y)
 			}
 		}
 	},
