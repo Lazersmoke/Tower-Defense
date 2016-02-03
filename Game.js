@@ -10,9 +10,13 @@ Game.prototype.resetGame = function () { //Resets Game
 }  
 
 Game.prototype.buildMap = function() {
+<<<<<<< HEAD
 	for (var x = 0; x < this.width; x++) {
+=======
+	for (var x = 0; x < this.map.width; x++) {
+>>>>>>> refs/remotes/origin/master
 		this.tileArray[x] = []
-		for (var y = 0; y < this.height; y++) {
+		for (var y = 0; y < this.map.height; y++) {
 			this.tileArray[x][y] = "grass"
 		}
 	}
@@ -26,4 +30,8 @@ Game.prototype.buildMap = function() {
 		this.tileArray[4][i] = "path"
 	}
 	this.nodeArray = [[12, 0], [12, 8], [4, 8], [4, 14]] //Sets location of nodes
+<<<<<<< HEAD
 }  
+=======
+}  
+>>>>>>> refs/remotes/origin/master
