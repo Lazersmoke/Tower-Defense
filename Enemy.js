@@ -1,19 +1,44 @@
-var Enemies = function(id, tileSize, width, height) { // Constructer
-	this.canvas = document.getElementById(id)
-	this.canvas.width = width * tileSize //Width and height represented in tiles
-
-	this.canvas.height = height * tileSize
-	this.context = this.canvas.getContext("2d")
-	this.tileSize = tileSize //Sets object variables
-	this.width = width
-	this.height = height
-	
+var Enemy = function(type, x, y, nodeArray, speed) { // Constructer
+	this.type = type
+	this.x = x
+	this.y = y
+	this.speed = speed
+	this.nodeArray = nodeArray
+	this.nodeNum = 0
 }
 
-Enemies.prototype = {
-	constructor: Enemies,
-	enemiesTick: function (imgId, x, y) { //Draws Image
-		img = document.getElementById(imgId)
-		this.context.drawImage(img, x, y, this.tileSize, this.tileSize)
+Enemy.prototype = {
+	constructor: Enemy,
+	enemyTick: function () { //Tick
+		if (x != nodeArray[nodeNum][0] * game.tileSize) { //If X need to change
+			if (Math.abs(x - nodeArray[nodeNum][0] * game.tileSize) < speed) { //If X is closer than speed
+				x = nodeArray[nodeNum][0] * game.tileSize
+			}
+			else {
+				if (x < nodeArray[nodeNum][0] * game.tileSize) { //Move X up
+					x += speed
+				}
+				if (x > nodeArray[nodeNum][0] * game.tileSize) { //Move X down
+					x -= speed
+				}
+			}
+		}
+		if (y != nodeArray[nodeNum][1] * game.tileSize) { //If Y need to change
+			if (Math.abs(y - nodeArray[nodeNum][1] * game.tileSize) < speed) { //If Y is closer than speed
+				y = nodeArray[nodeNum][1] * game.tileSize
+			}
+			else {
+				if (y < nodeArray[nodeNum][1] * game.tileSize) { //Move Y up
+					y += speed
+				}
+				if (y > nodeArray[nodeNum][1] * game.tileSize) { //Move Y down
+					y -= speed
+				}
+			}
+		}
+		if (x == nodeArray[nodeNum][0] * game.tileSize && y == nodeArray[nodeNum][1] * game.tileSize) { // If at node
+			nodeNum++
+		}
 	}
 }
+
