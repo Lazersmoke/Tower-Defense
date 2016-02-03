@@ -11,8 +11,8 @@ var Map = function(id, tileSize, width, height) { // Constructer
 }
 
 Map.prototype.drawImage = function (imgId, x, y) { //Draws Image
-	this.img = document.getElementById(imgId)
-	this.context.drawImage(img, x, y, tileSize, tileSize)
+	img = document.getElementById(imgId)
+	this.context.drawImage(img, x, y, this.tileSize, this.tileSize)
 }
 
 Map.prototype.drawTiles = function () { //Draws Tiles
