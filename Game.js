@@ -18,7 +18,7 @@ Game.prototype = {
 		this.postTick();
 	},
 	preTick: function(){
-	
+		this.map.drawTiles()
 	},
 	postTick: function(){
 	//All rendering things:
