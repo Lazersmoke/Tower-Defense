@@ -1,25 +1,26 @@
-var Tower = function(name, fireSpeed, maxRange, tileX, tileY) {
+game.tower.Tower = function(name, fireSpeed, maxRange, tileX, tileY) {
 	this.name = name;
 	this.maxRange = maxRange
 	this.fireSpeed = fireSpeed;//In ticks of cooldown
 	this.tileX = tileX;
 	this.tileY = tileY;
 	this.cooldown = 0;
-	Tower.towerList.push(this);
+	$Tower.towerList.push(this);
 }
-Tower.towerList = [];
-Tower.renderTowers = function () {
+var $Tower = game.tower.Tower;
+$Tower.towerList = [];
+$Tower.renderTowers = function () {
 	Tower.towerList.forEach(function(a){
 		a.renderTower();
 	});
 }
-Tower.tickTowers = function () { 
+$Tower.tickTowers = function () { 
 	Tower.towerList.forEach(function(a){
 		a.tickTower();
 	});
 }
-Tower.prototype = {
-	constructor: Tower,
+$Tower.prototype = {
+	constructor: $Tower,
 	tickTower: function () {
 		this.shoot()
 		console.log(this.name + " got Ticked!");//Fire at enemies
@@ -32,26 +33,7 @@ Tower.prototype = {
 		ctx.stroke();
 		console.log(this.name + " got Rendered!");//Fire at enemies
 	},
-	shoot: function () {
-		if(this.cooldown > 0){
-			this.cooldown--
-		}
-		var mySelf = this;//dont ask
-		var currClosest = -1;
-		var currClosestDist = 100000;
-		game.enemies.enemiesArray.forEach(function(a, b){
-			console.log(mySelf)
-			range = distance(a.x,a.y,tileToPixel(mySelf.tileX),tileToPixel(mySelf.tileY));
-			if(range < currClosestDist && range < mySelf.maxRange){
-				currClosestDist = range
-				currClosest = b;
-			}
-		});
-		if(currClosest > -1 && this.cooldown == 0){
-			game.enemies.killEnemy(currClosest);
-			this.cooldown = this.fireSpeed
-		}
-	}
+	
 }
 
 function distance(xa,ya,xb,yb){

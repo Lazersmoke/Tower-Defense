@@ -1,18 +1,16 @@
-var Enemies =  function () {
-	this.enemiesArray = []
-}
-
-Enemies.prototype = {
-	constructor: Enemies,
+game.enemy.Enemies = {
+	enemiesArray: [],
 	spawnEnemy: function (type, x, y, nodeArray, speed) {
-		this.enemiesArray.push(new Enemy(type, x, y, nodeArray, speed))
+		$Enemies.enemiesArray.push(new $Enemy(type, x, y, nodeArray, speed))
 	},
 	killEnemy: function (id) {
-		this.enemiesArray.splice(this.enemiesArray.indexOf(id), 1)
+		$Enemies.enemiesArray.splice($Enemies.enemiesArray.indexOf(id), 1)
 	},
 	enemiesTick: function () {
-		for (i in this.enemiesArray) {
-			this.enemiesArray[i].enemyTick()
+		for (i in $Enemies.enemiesArray) {
+			$Enemies.enemiesArray[i].enemyTick()
 		}
 	}
 }
+
+var $Enemies = game.enemy.Enemies

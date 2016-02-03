@@ -1,12 +1,9 @@
-var Game = function (canvasId, tileSize, width, height) { // Master class
-	this.map = new Map(canvasId, tileSize, width, height) //Creates map object
-	this.resetGame()
-	this.tickrate = 25
-	this.enemies = new Enemies()
-}
-
-Game.prototype = {
-	constructor:Game,
+var game = { // Master object
+	tickrate: 25,
+	//Packages:
+	enemy: {},
+	tower: {},
+	
 	resetGame: function(){ //Resets Game
 		this.map.buildMap()
 	},
@@ -17,15 +14,12 @@ Game.prototype = {
 		this.postTick();
 	},
 	preTick: function(){
-		this.map.clear()
-		this.map.drawTiles()
+		game.map.clear()
+		game.map.drawTiles()
 	},
 	postTick: function(){
 	//All rendering things:
-		Map.UITick();
+		game.map.UITick();
 		Tower.renderTowers();
 	}
 }
-Game.prototype.resetGame = function () { //Resets Game
-	this.map.buildMap()
-} 

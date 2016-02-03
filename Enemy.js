@@ -1,4 +1,4 @@
-var Enemy = function(type, x, y, nodeArray, speed) { // Constructer
+game.enemy.Enemy = function(type, x, y, nodeArray, speed) { // Constructer
 	this.type = type
 	this.x = x
 	this.y = y
@@ -6,9 +6,9 @@ var Enemy = function(type, x, y, nodeArray, speed) { // Constructer
 	this.nodeArray = nodeArray
 	this.nodeNum = 0
 }
-
-Enemy.prototype = {
-	constructor: Enemy,
+var $Enemy = game.enemy.Enemy
+$Enemy.prototype = {
+	constructor: $Enemy,
 	enemyTick: function () { //Tick
 		if (this.x != this.nodeArray[this.nodeNum][0] * game.tileSize) { //If X need to change
 			if (Math.abs(this.x - this.nodeArray[this.nodeNum][0] * game.tileSize) < this.speed) { //If X is closer than speed
