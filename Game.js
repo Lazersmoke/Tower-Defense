@@ -3,7 +3,6 @@ var Game = function (canvasId, tileSize, width, height) { // Master class
 	this.resetGame()
 	this.tickrate = 25
 	this.enemies = new Enemies()
-	this.enemies.spawnEnemy ("John Cena", tileToPixel(this.map.nodeArray[0][0]), tileToPixel(this.map.nodeArray[0][1]), this.map.nodeArray, 5)
 }
 
 Game.prototype = {
@@ -13,7 +12,7 @@ Game.prototype = {
 	},
 	tick: function(){
 		this.preTick();
-		enemies.enemiesTick();
+		this.enemies.enemiesTick();
 		Tower.tickTowers();
 		this.postTick();
 	},
