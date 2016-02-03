@@ -10,6 +10,7 @@ var Enemy = function(type, x, y, nodeArray, speed) { // Constructer
 Enemy.prototype = {
 	constructor: Enemy,
 	enemyTick: function () { //Tick
+          map.drawImage("grass", this.x, this.y)
 		if (this.x != tileToPixel(this.nodeArray[this.nodeNum][0])) { //If X need to change
 			if (Math.abs(this.x - tileToPixel(this.nodeArray[this.nodeNum][0])) < this.speed) { //If X is closer than speed
 				this.x = this.nodeArray[this.nodeNum][0] * game.tileSize
