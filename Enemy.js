@@ -25,17 +25,19 @@ Enemy.prototype = {
 			}
 		}
 		if (this.y != tileToPixel(this.nodeArray[this.nodeNum][1])) { //If Y need to change
-			alert(Math.abs(tileToPixel(this.y - this.nodeArray[this.nodeNum][1])) < this.speed)
 			if (Math.abs(tileToPixel(this.y - this.nodeArray[this.nodeNum][1])) < this.speed) { //If Y is closer than speed
 				this.y = this.nodeArray[this.nodeNum][1] * game.tileSize
 			}
 			else {
 				if (this.y < this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][1])]) { //Move Y up
+					alert ("down")
 					this.y += this.speed
 				}
 				if (this.y > this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][1])]) { //Move Y down
+					alert ("up")
 					this.y -= this.speed
 				}
+				alert(this.y)
 			}
 		}
 		if (this.x == tileToPixel(this.nodeArray[this.nodeNum][0]) && this.y == tileToPixel(this.nodeArray[this.nodeNum][1])) { // If at node
