@@ -22,5 +22,26 @@ Tower.prototype = {
 	},
 	renderTower: function () {
 		console.log(this.name + " got Rendered!");//Fire at enemies
+	},
+	shoot: function () {
+		if(this.cooldown > 0){
+			this.cooldown--
+		}
+		var currClosest = -1;
+		var currClosestDist = 100000;
+		game.enemies.enemiesArray.forEach(function(a, b){
+			if(distance(a.x,a.y,tileToPixel(this.TileX),tileToPixel(this.TileY)) < currClosestDist){
+				currClosestDist = distance(a.x,a.y,tileToPixel(this.TileX),tileToPixel(this.TileY))
+				currClosest = b;
+			}
+		});
+		if(currClosest > -1 && this.cooldown == 0){
+			game.enemies.killEnemy(currCloseset);
+			this.cooldown = this.fireSpeed
+		}
 	}
+}
+
+function distance(xa,ya,xb,yb){
+	return Math.sqrt(Math.pow((xa-xb),2)+Math.pow((ya-yb),2))
 }
