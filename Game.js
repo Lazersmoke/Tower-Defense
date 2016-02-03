@@ -13,7 +13,7 @@ Game.prototype = {
 	},
 	tick: function(){
 		this.preTick();
-		//Enemy.enemiesTick();
+		enemies.enemiesTick();
 		Tower.tickTowers();
 		this.postTick();
 	},
