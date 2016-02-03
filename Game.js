@@ -5,21 +5,26 @@ var game = { // Master object
 	tower: {},
 	
 	resetGame: function(){ //Resets Game
-		this.map.buildMap()
+		$Map.buildMap()
 	},
 	tick: function(){
-		this.preTick();
-		//this.enemies.enemiesTick();
-		Tower.tickTowers();
-		this.postTick();
+		$Game.preTick();
+		$Enemies.enemiesTick();
+		$Tower.tickTowers();
+		$Game.postTick();
 	},
 	preTick: function(){
-		game.map.clear()
-		game.map.drawTiles()
+		$Map.clear()
+		$Map.drawTiles()
 	},
 	postTick: function(){
-	//All rendering things:
-		game.map.UITick();
-		Tower.renderTowers();
+		$Enemies.enemiesPostTick()
+		//All rendering things:
+		$Map.UITick();
+		$Tower.renderTowers();
+	},
+	resetGame: function () {
+		$Map.buildMap()
 	}
 }
+var $Game = game

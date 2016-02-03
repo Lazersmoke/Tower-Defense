@@ -38,6 +38,10 @@ game.map = { // Constructer
 		game.map.context.clearRect(0, 0, game.map.canvas.width, game.map.canvas.height)
 	},
 
+        getNodeArray: function() {
+                return this.nodeArray
+        },
+
 	buildMap: function() {//TODO: procedural generation later(TM)
 		for (var x = 0; x < game.map.width; x++) {
 			game.map.tileArray[x] = []

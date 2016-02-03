@@ -10,33 +10,38 @@ var $Enemy = game.enemy.Enemy
 $Enemy.prototype = {
 	constructor: $Enemy,
 	enemyTick: function () { //Tick
-		if (this.x != this.nodeArray[this.nodeNum][0] * game.tileSize) { //If X need to change
-			if (Math.abs(this.x - this.nodeArray[this.nodeNum][0] * game.tileSize) < this.speed) { //If X is closer than speed
-				this.x = this.nodeArray[this.nodeNum][0] * game.tileSize
+		if (this.nodeNum > this.nodeArray.length - 1) {
+			this.type="dead"
+			return true
+		}
+		if (this.x != $Map.tileToPixel(this.nodeArray[this.nodeNum][0]) && this.type != "dead") { //If X need to change
+			if (Math.abs(this.x - $Map.tileToPixel(this.nodeArray[this.nodeNum][0])) < this.speed) { //If X is closer than speed
+				this.x = $Map.tileToPixel(this.nodeArray[this.nodeNum][0])
 			}
 			else {
-				if (this.x < this.nodeArray[this.nodeNum][0] * game.tileSize) { //Move X up
-					this.x += speed
+				if (this.x < $Map.tileToPixel(this.nodeArray[this.nodeNum][0])) { //Move X up
+					this.x += this.speed
 				}
-				if (this.x > this.nodeArray[this.nodeNum][0] * game.tileSize) { //Move X down
-					this.x -= speed
+				if (this.x > $Map.tileToPixel(this.nodeArray[this.nodeNum][0])) { //Move X down
+					this.x -= this.speed
 				}
 			}
 		}
-		if (this.y != this.nodeArray[this.nodeNum][1] * game.tileSize) { //If Y need to change
-			if (Math.abs(this.y - this.nodeArray[this.nodeNum][1] * game.tileSize) < this.speed) { //If Y is closer than speed
-				this.y = this.nodeArray[this.nodeNum][1] * game.tileSize
+		if (this.y != $Map.tileToPixel(this.nodeArray[this.nodeNum][1]) && this.type != "dead") { //If Y need to change
+			if (Math.abs(this.y - $Map.tileToPixel(this.nodeArray[this.nodeNum][1])) < this.speed) { //If Y is closer than speed
+				this.y = $Map.tileToPixel(this.nodeArray[this.nodeNum][1])
 			}
 			else {
-				if (this.y < this.nodeArray[this.nodeNum][1] * game.tileSize) { //Move Y up
-					this.y += speed
+				if (this.y < $Map.tileToPixel(this.nodeArray[this.nodeNum][1])) { //Move Y up
+					this.y += this.speed
 				}
-				if (this.y > this.nodeArray[this.nodeNum][1] * game.tileSize) { //Move Y down
-					this.y -= speed
+				if (this.y > $Map.tileToPixel(this.nodeArray[this.nodeNum][1])) { //Move Y down
+					this.y -= this.speed
 				}
 			}
 		}
-		if (this.x == this.nodeArray[this.nodeNum][0] * game.tileSize && this.y == this.nodeArray[this.nodeNum][1] * game.tileSize) { // If at node
+		game.map.drawImage("enemy", this.x - (game.map.tileSize / 2), this.y - (game.map.tileSize / 2))
+		if (this.x == $Map.tileToPixel(this.nodeArray[this.nodeNum][0]) && this.y == $Map.tileToPixel(this.nodeArray[this.nodeNum][1]) && this.nodeNum < this.nodeArray.length) { // If at node
 			this.nodeNum++
 		}
 	}

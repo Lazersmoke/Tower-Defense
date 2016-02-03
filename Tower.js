@@ -10,12 +10,12 @@ game.tower.Tower = function(name, fireSpeed, maxRange, tileX, tileY) {
 var $Tower = game.tower.Tower;
 $Tower.towerList = [];
 $Tower.renderTowers = function () {
-	Tower.towerList.forEach(function(a){
+	$Tower.towerList.forEach(function(a){
 		a.renderTower();
 	});
 }
 $Tower.tickTowers = function () { 
-	Tower.towerList.forEach(function(a){
+	$Tower.towerList.forEach(function(a){
 		a.tickTower();
 	});
 }
