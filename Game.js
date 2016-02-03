@@ -3,7 +3,6 @@ var Game = function (canvasId, tileSize, width, height) { // Master class
 	this.resetGame()
 	this.tickrate = 25
 	this.enemies = new Enemies()
-        setInterval(this.tick(), 1000 / this.tickRate)
 }
 
 Game.prototype = {
@@ -12,6 +11,7 @@ Game.prototype = {
 		this.map.buildMap()
 	},
 	tick: function(){
+		alert("tick")
 		this.preTick();
 		this.enemies.enemiesTick();
 		Tower.tickTowers();
@@ -23,11 +23,11 @@ Game.prototype = {
 	},
 	postTick: function(){
 	//All rendering things:
-                this.enemies.enemiesPostTick()
+	this.enemies.enemiesPostTick()
 		Map.UITick();
 		Tower.renderTowers();
+	},
+	resetGame: function () {
+		this.map.buildMap()
 	}
 }
-Game.prototype.resetGame = function () { //Resets Game
-	this.map.buildMap()
-} 

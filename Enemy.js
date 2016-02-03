@@ -10,9 +10,13 @@ var Enemy = function(type, x, y, nodeArray, speed) { // Constructer
 Enemy.prototype = {
 	constructor: Enemy,
 	enemyTick: function () { //Tick
-		if (this.x != tileToPixel(this.nodeArray[this.nodeNum][0])) { //If X need to change
+		if (this.nodeNum > this.nodeArray.length - 1) {
+			this.type="dead"
+			return true
+		}
+		if (this.x != tileToPixel(this.nodeArray[this.nodeNum][0]) && this.type != "dead") { //If X need to change
 			if (Math.abs(this.x - tileToPixel(this.nodeArray[this.nodeNum][0])) < this.speed) { //If X is closer than speed
-				this.x = this.nodeArray[this.nodeNum][0] * game.tileSize
+				this.x = tileToPixel(this.nodeArray[this.nodeNum][0])
 			}
 			else {
 				if (this.x < tileToPixel(this.nodeArray[this.nodeNum][0])) { //Move X up
@@ -23,9 +27,9 @@ Enemy.prototype = {
 				}
 			}
 		}
-		if (this.y != tileToPixel(this.nodeArray[this.nodeNum][1])) { //If Y need to change
-			if (Math.abs(tileToPixel(this.y - this.nodeArray[this.nodeNum][1])) < this.speed) { //If Y is closer than speed
-				this.y = this.nodeArray[this.nodeNum][1] * game.tileSize
+		if (this.y != tileToPixel(this.nodeArray[this.nodeNum][1]) && this.type != "dead") { //If Y need to change
+			if (Math.abs(this.y - tileToPixel(this.nodeArray[this.nodeNum][1])) < this.speed) { //If Y is closer than speed
+				this.y = tileToPixel(this.nodeArray[this.nodeNum][1])
 			}
 			else {
 				if (this.y < tileToPixel(this.nodeArray[this.nodeNum][1])) { //Move Y up
@@ -36,8 +40,8 @@ Enemy.prototype = {
 				}
 			}
 		}
-                    game.map.drawImage("grass", this.x - (game.map.tileSize / 2), tile.y - (game.map.tileSize / 2))
-		if (this.x == tileToPixel(this.nodeArray[this.nodeNum][0]) && this.y == tileToPixel(this.nodeArray[this.nodeNum][1])) { // If at node
+		game.map.drawImage("grass", this.x - (game.map.tileSize / 2), this.y - (game.map.tileSize / 2))
+		if (this.x == tileToPixel(this.nodeArray[this.nodeNum][0]) && this.y == tileToPixel(this.nodeArray[this.nodeNum][1]) && this.nodeNum < this.nodeArray.length) { // If at node
 			this.nodeNum++
 		}
 	}

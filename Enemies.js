@@ -14,12 +14,12 @@ Enemies.prototype = {
 		for (i in this.enemiesArray) {
 			this.enemiesArray[i].enemyTick()
 		}
-        },
-        enemiesPostTick: function () {
-                for (var i = this.enemiesArray.length; i > -1; i--) {
-                        if (this.enemiesArray[i].type == "dead") {
-                                this.enemiesArray.splice(this.enemiesArray.indexOf(i), 1)
-                        }
-                }
+	},
+	enemiesPostTick: function () {
+		for (var i = this.enemiesArray.length - 1; i > -1; i--) {
+			if (this.enemiesArray[i].type == "dead") {
+				this.enemiesArray.splice(this.enemiesArray.indexOf(i), 1)
+			}
+		}
 	}
 }
