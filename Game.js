@@ -1,7 +1,7 @@
 var Game = function (canvasId, tileSize, width, height) { // Master class
 	this.map = new Map(canvasId, tileSize, width, height) //Creates map object
 	this.resetGame()
-	this.tickrate = 25
+	this.tickRate = 25
 	this.enemies = new Enemies()
 }
 
