@@ -18,11 +18,11 @@ Game.prototype = {
 		this.postTick();
 	},
 	preTick: function(){
+		this.map.clear()
 		this.map.drawTiles()
 	},
 	postTick: function(){
 	//All rendering things:
-		this.map.clear()
 		Map.UITick();
 		Tower.renderTowers();
 	}
