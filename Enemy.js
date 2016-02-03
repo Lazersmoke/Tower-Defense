@@ -19,7 +19,7 @@ Enemy.prototype = {
 				if (this.x < this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][0])]) { //Move X up
 					this.x += speed
 				}
-				if (this.x > this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][0])) { //Move X down
+				if (this.x > this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][0])]) { //Move X down
 					this.x -= speed
 				}
 			}
@@ -29,10 +29,10 @@ Enemy.prototype = {
 				this.y = this.nodeArray[this.nodeNum][1] * game.tileSize
 			}
 			else {
-				if (this.y < this.nodeArray[tileToPixel(this.nodeNum][1])) { //Move Y up
+				if (this.x < this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][1])]) { //Move Y up
 					this.y += speed
 				}
-				if (this.y > this.nodeArray[tileToPixel(this.nodeNum][1])) { //Move Y down
+				if (this.x > this.nodeArray[tileToPixel(this.nodeArray[this.nodeNum][1])]) { //Move Y down
 					this.y -= speed
 				}
 			}
