@@ -1,10 +1,16 @@
-var Tower = function(id, tileSize, width, height) { // Constructer
-	
+var towerList = [];
+var Tower = function(name) { // Constructer
+	this.name = name;
+	towerList.push(this);
 }
-
+Tower.towersTick = function () { 
+	towerList.forEach(function(a){
+		a.tickTower();
+	});
+}
 Tower.prototype = {
 	constructor: Tower,
-	enemiesTick: function (imgId, x, y) { 
-		
+	tickTower: function () {
+		this.name + " got Ticked!";//Fire at enemies
 	}
 }
