@@ -1,7 +1,9 @@
-var Tower = function(name, tileX, tileY) {
+var Tower = function(name, fireSpeed, tileX, tileY) {
 	this.name = name;
+	this.fireSpeed = fireSpeed;//In ticks of cooldown
 	this.tileX = tileX;
 	this.tileY = tileY;
+	this.cooldown = 0;
 	Tower.towerList.push(this);
 }
 Tower.towerList = [];
@@ -18,6 +20,7 @@ Tower.tickTowers = function () {
 Tower.prototype = {
 	constructor: Tower,
 	tickTower: function () {
+		this.shoot()
 		console.log(this.name + " got Ticked!");//Fire at enemies
 	},
 	renderTower: function () {

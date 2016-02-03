@@ -1,7 +1,8 @@
 var Game = function (canvasId, tileSize, width, height) { // Master class
 	this.map = new Map(canvasId, tileSize, width, height) //Creates map object
 	this.resetGame()
-	this.tickrate = 25;
+	this.tickrate = 25
+	this.enemies = new Enemies()
 }
 
 Game.prototype = {
@@ -11,12 +12,13 @@ Game.prototype = {
 	},
 	tick: function(){
 		this.preTick();
-		//Enemy.enemiesTick();
+		this.enemies.enemiesTick();
 		Tower.tickTowers();
 		this.postTick();
 	},
 	preTick: function(){
-	
+		this.map.clear()
+		this.map.drawTiles()
 	},
 	postTick: function(){
 	//All rendering things:
