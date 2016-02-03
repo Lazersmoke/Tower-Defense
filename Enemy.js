@@ -10,7 +10,6 @@ var Enemy = function(type, x, y, nodeArray, speed) { // Constructer
 Enemy.prototype = {
 	constructor: Enemy,
 	enemyTick: function () { //Tick
-		alert("Enemy Tick")
 		if (this.x != tileToPixel(this.nodeArray[this.nodeNum][0])) { //If X need to change
 			if (Math.abs(this.x - tileToPixel(this.nodeArray[this.nodeNum][0])) < this.speed) { //If X is closer than speed
 				this.x = this.nodeArray[this.nodeNum][0] * game.tileSize
@@ -36,7 +35,6 @@ Enemy.prototype = {
 					this.y -= this.speed
 				}
 			}
-			alert(this.y)
 		}
 		if (this.x == tileToPixel(this.nodeArray[this.nodeNum][0]) && this.y == tileToPixel(this.nodeArray[this.nodeNum][1])) { // If at node
 			this.nodeNum++
