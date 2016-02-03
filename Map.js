@@ -37,6 +37,10 @@ Map.prototype = {
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
 	},
 
+        getNodeArray: function() {
+                return this.nodeArray
+        },
+
 	buildMap: function() {//TODO: procedural generation later(TM)
 		for (var x = 0; x < this.width; x++) {
 			this.tileArray[x] = []

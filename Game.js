@@ -11,6 +11,7 @@ Game.prototype = {
 		this.map.buildMap()
 	},
 	tick: function(){
+		alert("tick")
 		this.preTick();
 		this.enemies.enemiesTick();
 		Tower.tickTowers();
@@ -22,10 +23,11 @@ Game.prototype = {
 	},
 	postTick: function(){
 	//All rendering things:
+	this.enemies.enemiesPostTick()
 		Map.UITick();
 		Tower.renderTowers();
+	},
+	resetGame: function () {
+		this.map.buildMap()
 	}
 }
-Game.prototype.resetGame = function () { //Resets Game
-	this.map.buildMap()
-} 

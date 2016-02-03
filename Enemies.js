@@ -8,11 +8,18 @@ Enemies.prototype = {
 		this.enemiesArray.push(new Enemy(type, x, y, nodeArray, speed))
 	},
 	killEnemy: function (id) {
-		this.enemiesArray.splice(this.enemiesArray.indexOf(id), 1)
+		this.enemiesArray[i].type = "dead"
 	},
 	enemiesTick: function () {
 		for (i in this.enemiesArray) {
 			this.enemiesArray[i].enemyTick()
+		}
+	},
+	enemiesPostTick: function () {
+		for (var i = this.enemiesArray.length - 1; i > -1; i--) {
+			if (this.enemiesArray[i].type == "dead") {
+				this.enemiesArray.splice(this.enemiesArray.indexOf(i), 1)
+			}
 		}
 	}
 }
