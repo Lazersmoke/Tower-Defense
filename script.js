@@ -6,5 +6,5 @@ function tileToPixel(cord) {
 }
 
 function pixelToTile(cord) {
-  return Math.abs((cord / game.tileSize) - 0.5)
+  return Math.round((cord / game.tileSize) - 0.5)
 }
