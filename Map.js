@@ -16,20 +16,22 @@ game.map = { // Constructer
 	pixelToTile: function(cord) {
 		return Math.round((cord / $Map.tileSize) - 0.5)
 	},
-	drawImage: function (imgId, x, y) { //Draws Image
-		$Renderer.queForRender(function(ctx){ctx.drawImage(document.getElementById(imgId), x, y, $Map.tileSize, $Map.tileSize)})
+	addImage: function (name, imgId, x, y) { //Adds an image to the render que (name is render task name)
+		$Renderer.createTask(name, function(ctx){ctx.drawImage(document.getElementById(imgId), x, y, $Map.tileSize, $Map.tileSize)})
 	},
-
-	drawTiles: function () { //Draws Tiles
+	removeImage: function (name) {
+		$Renderer.removeTask(name);
+	},
+	addTiles: function () { //Adds Tiles to Render Que
 		for (var x = 0; x < $Map.width; x++) {
 			for (var y = 0; y < $Map.height; y++) {
-				$Map.drawTile($Map.tileArray[x][y], x, y)
+				$Map.addTile($Map.tileArray[x][y], x, y)
 			}
 		}
 	},
 
-	drawTile: function (tileId, tileX, tileY) { //Draws image using tile coords
-		$Map.drawImage(tileId, tileX * $Map.tileSize, tileY * $Map.tileSize)
+	addTile: function (tileId, tileX, tileY) { //Adds a tile to the render que
+		$Map.addImage("[game.map] Tile at: " + String(tileX) + ", " + String(tileY), tileId, tileX * $Map.tileSize, tileY * $Map.tileSize)
 	},
 
 	clear: function () { //Clears canvas
@@ -60,6 +62,8 @@ game.map = { // Constructer
 	}
 }
 var $Map = game.map
+
+//Setup
 $Map.canvas.width = $Map.width * $Map.tileSize //Width and height represented in tiles
 $Map.canvas.height = $Map.height * $Map.tileSize
 $Map.context = $Map.canvas.getContext("2d")

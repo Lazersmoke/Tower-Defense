@@ -16,17 +16,11 @@ var game = { // Master object
 		$Game.postTick();
 	},
 	preTick: function(){
-		//$Map.clear()
-		$Map.drawTiles()
+		
 	},
 	postTick: function(){
 		$Enemies.enemiesPostTick()
-		//All rendering things:
 		$Map.UITick();
-		$Tower.renderTowers();
-	},
-	resetGame: function () {
-		$Map.buildMap()
 	}
 }
 var $Game = game

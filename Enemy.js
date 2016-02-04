@@ -10,6 +10,9 @@ var $Enemy = game.enemy.Enemy
 $Enemy.prototype = {
 	constructor: $Enemy,
 	enemyTick: function () { //Tick
+		var oldX = this.x//Remeber current x and y to check for change later
+		var oldY = this.y
+		
 		if (this.nodeNum > this.nodeArray.length - 1) {
 			this.type="dead"
 			return true
@@ -40,9 +43,18 @@ $Enemy.prototype = {
 				}
 			}
 		}
-		game.map.drawImage("enemy", this.x - (game.map.tileSize / 2), this.y - (game.map.tileSize / 2))
+		
 		if (this.x == $Map.tileToPixel(this.nodeArray[this.nodeNum][0]) && this.y == $Map.tileToPixel(this.nodeArray[this.nodeNum][1]) && this.nodeNum < this.nodeArray.length) { // If at node
 			this.nodeNum++
+		}
+		//If we moved, delete old render task
+		console.log("oldX = " + oldX + ", current x = " + this.x)
+		if(oldX != this.x || oldY != this.y){
+			$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + oldX + ", " + oldY)
+		}
+		//If are not rendered now, render
+		if(!$Renderer.hasTask("[game.enemy.Enemy] Enemy at: " + this.x + ", " + this.y)){//If we are not already having a render object, add one
+			$Map.addImage("[game.enemy.Enemy] Enemy at: " + this.x + ", " + this.y, "enemy", this.x - (game.map.tileSize / 2), this.y - (game.map.tileSize / 2))
 		}
 	}
 }
