@@ -12,7 +12,7 @@ game.enemy.Enemies = {
 		}
 	},
 	enemiesPostTick: function () {
-		for (var i = $Enemies.enemiesArray.length - 1; i > -1; i--) {
+		for (var i = 0; i < $Enemies.enemiesArray; i++) {
 			if ($Enemies.enemiesArray[i].type == "dead") {
 				$Enemies.enemiesArray.splice($Enemies.enemiesArray.indexOf(i), 1)
 			}
