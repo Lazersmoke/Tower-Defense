@@ -22,14 +22,13 @@ $Tower.tickTowers = function () {
 $Tower.prototype = {
 	constructor: $Tower,
 	tickTower: function () {
-		this.shoot()
 		console.log(this.name + " got Ticked!");//Fire at enemies
 	},
 	renderTower: function () {
 		var c=document.getElementById("map");
 		var ctx=c.getContext("2d");
 		ctx.beginPath();
-		ctx.arc(tileToPixel(this.tileX),tileToPixel(this.tileY),this.maxRange,0,2*Math.PI);
+		ctx.arc($Map.tileToPixel(this.tileX),$Map.tileToPixel(this.tileY),this.maxRange,0,2*Math.PI);
 		ctx.stroke();
 		console.log(this.name + " got Rendered!");//Fire at enemies
 	},
