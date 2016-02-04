@@ -1,3 +1,4 @@
+
 var game = { // Master object
 	tickRate: 25,
 	//Packages:
