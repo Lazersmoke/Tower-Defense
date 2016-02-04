@@ -7,8 +7,5 @@ $RenderTask.prototype = {
 	constructor: $RenderTask,
 	render: function(canvasContext) {
 		throw "Warning: Blank render task created";
-	},
-	queForRender: function() {
-		$Renderer.addRenderTask(this);
 	}
 }
