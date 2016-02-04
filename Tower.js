@@ -6,6 +6,7 @@ game.tower.Tower = function(name, fireSpeed, maxRange, tileX, tileY) {
 	this.tileY = tileY;
 	this.cooldown = 0;
 	$Tower.towerList.push(this);
+	$Renderer.addTask(new $RenderTask("[game.tower.Tower] Tower at: " + this.tileX + ", " + this.tileY, this.renderTower, this))
 }
 var $Tower = game.tower.Tower;
 $Tower.towerList = [];
@@ -24,15 +25,11 @@ $Tower.prototype = {
 	tickTower: function () {
 		console.log(this.name + " got Ticked!");//Fire at enemies
 	},
-	renderTower: function () {
-		var c=document.getElementById("map");
-		var ctx=c.getContext("2d");
+	renderTower: function (ctx) {
 		ctx.beginPath();
 		ctx.arc($Map.tileToPixel(this.tileX),$Map.tileToPixel(this.tileY),this.maxRange,0,2*Math.PI);
 		ctx.stroke();
-		console.log(this.name + " got Rendered!");//Fire at enemies
-	},
-	
+	}
 }
 
 function distance(xa,ya,xb,yb){

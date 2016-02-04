@@ -2,11 +2,23 @@ game.render.Renderer = {
 	renderQue: []
 }
 var $Renderer = game.render.Renderer;
-$Renderer.queTask = function (renderTask) {
-	$Renderer.renderQue.push(renderTask)
+$Renderer.addTask = function (renderTask) {
+	if(!$Renderer.hasTask(renderTask.name)){
+		$Renderer.renderQue.push(renderTask)
+	}else{throw "Render Task with name '" + renderTask.name + "' already exists, and has not been added"}
 }
-$Renderer.queForRender = function (callback) {
-	$Renderer.queTask(new $RenderTask("auto-gen render task", callback));
+$Renderer.removeTask = function (name) {
+	$Renderer.renderQue.forEach(function(a,b){
+		if(a.name == name){$Renderer.renderQue.splice(b, 1)}
+	});
+}
+$Renderer.hasTask = function (name) {
+	$Renderer.renderQue.forEach(function(a,b){
+		if(a.name == name){return true;}
+	});
+}
+$Renderer.createTask = function (name, callback) {
+	$Renderer.addTask(new $RenderTask(name, callback));
 }
 $Renderer.render = function () { 
 	requestAnimationFrame($Renderer.render)
@@ -14,7 +26,6 @@ $Renderer.render = function () {
 		$Map.clear()
 	}
 	$Renderer.renderQue.forEach(function(task){
-		task.render($Map.context);
+		task.render.call(task.thisOverride, $Map.context);
 	})
-	$Renderer.renderQue = [];
 }
