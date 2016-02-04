@@ -1,6 +1,6 @@
 
 var game = { // Master object
-	tickrate: 25,
+	tickRate: 25,
 	//Packages:
 	enemy: {},
 	tower: {},
