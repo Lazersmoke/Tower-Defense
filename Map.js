@@ -7,7 +7,7 @@ game.map = { // Constructer
 	tileArray: [],
 	nodeArray: [], //Tells enemies where to go
 	UITick: function(){
-		console.log("ticked UI")//NO-OP
+		//NO-OP
 	},
 	tileToPixel: function(cord) {
 		return (cord + 0.5) * game.map.tileSize
@@ -18,7 +18,6 @@ game.map = { // Constructer
 	},
 	drawImage: function (imgId, x, y) { //Draws Image
 		img = document.getElementById(imgId)
-		console.log("drawing tile " + imgId + "at" + x)
 		game.map.context.drawImage(img, x, y, game.map.tileSize, game.map.tileSize)
 	},
 
