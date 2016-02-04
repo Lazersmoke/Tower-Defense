@@ -4,6 +4,7 @@ var game = { // Master object
 	//Packages:
 	enemy: {},
 	tower: {},
+	render: {},
 	
 	resetGame: function(){ //Resets Game
 		$Map.buildMap()
@@ -15,7 +16,7 @@ var game = { // Master object
 		$Game.postTick();
 	},
 	preTick: function(){
-		$Map.clear()
+		//$Map.clear()
 		$Map.drawTiles()
 	},
 	postTick: function(){

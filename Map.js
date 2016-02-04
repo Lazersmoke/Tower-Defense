@@ -10,31 +10,30 @@ game.map = { // Constructer
 		//NO-OP
 	},
 	tileToPixel: function(cord) {
-		return (cord + 0.5) * game.map.tileSize
+		return (cord + 0.5) * $Map.tileSize
 	},
 
 	pixelToTile: function(cord) {
-		return Math.round((cord / game.map.tileSize) - 0.5)
+		return Math.round((cord / $Map.tileSize) - 0.5)
 	},
 	drawImage: function (imgId, x, y) { //Draws Image
-		img = document.getElementById(imgId)
-		game.map.context.drawImage(img, x, y, game.map.tileSize, game.map.tileSize)
+		$Renderer.queForRender(function(ctx){ctx.drawImage(document.getElementById(imgId), x, y, $Map.tileSize, $Map.tileSize)})
 	},
 
 	drawTiles: function () { //Draws Tiles
-		for (var x = 0; x < game.map.width; x++) {
-			for (var y = 0; y < game.map.height; y++) {
-				game.map.drawTile(game.map.tileArray[x][y], x, y)
+		for (var x = 0; x < $Map.width; x++) {
+			for (var y = 0; y < $Map.height; y++) {
+				$Map.drawTile($Map.tileArray[x][y], x, y)
 			}
 		}
 	},
 
 	drawTile: function (tileId, tileX, tileY) { //Draws image using tile coords
-		game.map.drawImage(tileId, tileX * game.map.tileSize, tileY * game.map.tileSize)
+		$Map.drawImage(tileId, tileX * $Map.tileSize, tileY * $Map.tileSize)
 	},
 
 	clear: function () { //Clears canvas
-		game.map.context.clearRect(0, 0, game.map.canvas.width, game.map.canvas.height)
+		$Map.context.clearRect(0, 0, $Map.canvas.width, $Map.canvas.height)
 	},
 
         getNodeArray: function() {
@@ -42,25 +41,25 @@ game.map = { // Constructer
         },
 
 	buildMap: function() {//TODO: procedural generation later(TM)
-		for (var x = 0; x < game.map.width; x++) {
-			game.map.tileArray[x] = []
-			for (var y = 0; y < game.map.height; y++) {
-				game.map.tileArray[x][y] = "grass"
+		for (var x = 0; x < $Map.width; x++) {
+			$Map.tileArray[x] = []
+			for (var y = 0; y < $Map.height; y++) {
+				$Map.tileArray[x][y] = "grass"
 			}
 		}
 		for (var i = 0; i < 9; i++) {
-			game.map.tileArray[12][i] = "path"
+			$Map.tileArray[12][i] = "path"
 		}
 		for (var i = 4; i < 12; i++) {
-			game.map.tileArray[i][8] = "path"
+			$Map.tileArray[i][8] = "path"
 		}
 		for (var i = 9; i < 15; i++) {
-			game.map.tileArray[4][i] = "path"
+			$Map.tileArray[4][i] = "path"
 		}
-		game.map.nodeArray = [[12, 0], [12, 8], [4, 8], [4, 14]] //Sets location of nodes
+		$Map.nodeArray = [[12, 0], [12, 8], [4, 8], [4, 14]] //Sets location of nodes
 	}
 }
 var $Map = game.map
-$Map.canvas.width = game.map.width * game.map.tileSize //Width and height represented in tiles
-$Map.canvas.height = game.map.height * game.map.tileSize
-$Map.context = game.map.canvas.getContext("2d")
+$Map.canvas.width = $Map.width * $Map.tileSize //Width and height represented in tiles
+$Map.canvas.height = $Map.height * $Map.tileSize
+$Map.context = $Map.canvas.getContext("2d")
