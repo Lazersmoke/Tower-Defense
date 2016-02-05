@@ -12,7 +12,7 @@ game.enemy.Enemies = {
 		}
 	},
 	enemiesPostTick: function () {
-		for (var i = $Enemies.enemiesArray.length - 1; i > -1; i--) {
+		for (var i = 0; i < $Enemies.enemiesArray; i++) {
 			if ($Enemies.enemiesArray[i].type == "dead") {
 				//Remove Render Task on death
 				$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + $Enemies.enemiesArray[i].x + ", " + $Enemies.enemiesArray[i].y)
