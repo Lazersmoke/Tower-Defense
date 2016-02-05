@@ -1,7 +1,7 @@
 game.enemy.Enemies = {
 	enemiesArray: [],
-	spawnEnemy: function (type, x, y, nodeArray, speed) {
-		$Enemies.enemiesArray.push(new $Enemy(type, x, y, nodeArray, speed))
+	spawnEnemy: function (level, x, y, nodeArray, speed) {
+		$Enemies.enemiesArray.push(new $Enemy(level, x, y, nodeArray, speed))
 	},
 	killEnemy: function (id) {
 		$Enemies.enemiesArray[i].type = "dead"
@@ -12,8 +12,8 @@ game.enemy.Enemies = {
 		}
 	},
 	enemiesPostTick: function () {
-		for (var i = 0; i < $Enemies.enemiesArray; i++) {
-			if ($Enemies.enemiesArray[i].type == "dead") {
+		for (var i = 0; i < $Enemies.enemiesArray.length; i++) {
+			if ($Enemies.enemiesArray[i].health == 0) {
 				//Remove Render Task on death
 				$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + $Enemies.enemiesArray[i].x + ", " + $Enemies.enemiesArray[i].y)
 				$Enemies.enemiesArray.splice($Enemies.enemiesArray.indexOf(i), 1)

@@ -1,5 +1,6 @@
-game.enemy.Enemy = function(type, x, y, nodeArray, speed) { // Constructer
-	this.type = type
+game.enemy.Enemy = function(level, x, y, nodeArray, speed) { // Constructer
+	this.level = level
+	this.health = 1
 	this.x = x
 	this.y = y
 	this.speed = speed
@@ -14,7 +15,7 @@ $Enemy.prototype = {
 		var oldY = this.y
 		
 		if (this.nodeNum > this.nodeArray.length - 1) {
-			this.type="dead"
+			this.health = 0
 			return true
 		}
 		if (this.x != $Map.tileToPixel(this.nodeArray[this.nodeNum][0]) && this.type != "dead") { //If X need to change
@@ -48,7 +49,6 @@ $Enemy.prototype = {
 			this.nodeNum++
 		}
 		//If we moved, delete old render task
-		console.log("oldX = " + oldX + ", current x = " + this.x)
 		if(oldX != this.x || oldY != this.y){
 			$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + oldX + ", " + oldY)
 		}
