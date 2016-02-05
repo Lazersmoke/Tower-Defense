@@ -1,12 +1,11 @@
-game.tower.Tower = function(name, fireSpeed, maxRange, tileX, tileY) {
+game.tower.Tower = function(name, tileX, tileY) {
 	this.name = name;
-	this.maxRange = maxRange
-	this.fireSpeed = fireSpeed;//In ticks of cooldown
 	this.tileX = tileX;
 	this.tileY = tileY;
 	this.cooldown = 0;
 	$Tower.towerList.push(this);
-	$Renderer.addTask(new $RenderTask("[game.tower.Tower] Tower at: " + this.tileX + ", " + this.tileY, this.renderTower, this))
+	$Renderer.addImage("[game.tower.Tower] Tower at: " + this.tileX + ", " + this.tileY, "tower", $Map.tileToPixel(this.tileX) - ($Map.tileSize / 2), $Map.tileToPixel(this.tileY) - ($Map.tileSize / 2))
+	$Renderer.addTask(new $RenderTask("[game.tower.Tower] Tower range radius at: " + this.tileX + ", " + this.tileY, this.renderTower, this))
 }
 var $Tower = game.tower.Tower;
 $Tower.towerList = [];
