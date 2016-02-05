@@ -1,4 +1,4 @@
-game.map = { // Constructer
+game.map.Map = { // Constructer
 	canvas: document.getElementById("map"),
 	tileSize: 64, //Sets object variables
 	width: 15,
@@ -17,7 +17,11 @@ game.map = { // Constructer
 		return Math.round((cord / $Map.tileSize) - 0.5)
 	},
 	addImage: function (name, imgId, x, y) { //Adds an image to the render que (name is render task name)
-		$Renderer.createTask(name, function(ctx){ctx.drawImage(document.getElementById(imgId), x, y, $Map.tileSize, $Map.tileSize)})
+		$Renderer.createTask(name, function(ctx){
+			if(imgId.includes("e")){console.log(imgId); console.log(x), console.log(y)}
+			ctx.drawImage(document.getElementById(imgId), x, y, $Map.tileSize, $Map.tileSize)
+			}
+		)
 	},
 	removeImage: function (name) {
 		$Renderer.removeTask(name);
@@ -61,7 +65,7 @@ game.map = { // Constructer
 		$Map.nodeArray = [[12, 0], [12, 8], [4, 8], [4, 14]] //Sets location of nodes
 	}
 }
-var $Map = game.map
+var $Map = game.map.Map
 
 //Setup
 $Map.canvas.width = $Map.width * $Map.tileSize //Width and height represented in tiles

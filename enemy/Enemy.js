@@ -54,7 +54,7 @@ $Enemy.prototype = {
 		}
 		//If are not rendered now, render
 		if(!$Renderer.hasTask("[game.enemy.Enemy] Enemy at: " + this.x + ", " + this.y)){//If we are not already having a render object, add one
-			$Map.addImage("[game.enemy.Enemy] Enemy at: " + this.x + ", " + this.y, "enemy", this.x - (game.map.tileSize / 2), this.y - (game.map.tileSize / 2))
+			$Map.addImage("[game.enemy.Enemy] Enemy at: " + this.x + ", " + this.y, "enemy", this.x - ($Map.tileSize / 2), this.y - ($Map.tileSize / 2))
 		}
 	}
 }

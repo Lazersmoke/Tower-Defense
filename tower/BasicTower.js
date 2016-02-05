@@ -16,7 +16,6 @@ $BasicTower.prototype.shoot = function () {
 	var currClosest = -1;
 	var currClosestDist = 100000;
 	$Enemies.enemiesArray.forEach(function(a, b){
-		console.log(mySelf)
 		range = distance(a.x,a.y,$Map.tileToPixel(mySelf.tileX),$Map.tileToPixel(mySelf.tileY));
 		if(range < currClosestDist && range < mySelf.maxRange){
 			currClosestDist = range

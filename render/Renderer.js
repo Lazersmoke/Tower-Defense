@@ -18,12 +18,12 @@ $Renderer.hasTask = function (name) {
 	});
 }
 $Renderer.createTask = function (name, callback) {
-	$Renderer.addTask(new $RenderTask(name, callback));
+	$Renderer.addTask(new $RenderTask(name, callback, this));
 }
 $Renderer.render = function () { 
 	requestAnimationFrame($Renderer.render)
 	if($Renderer.renderQue.length > 0){
-		$Map.clear()
+		//$Map.clear()
 	}
 	$Renderer.renderQue.forEach(function(task){
 		task.render.call(task.thisOverride, $Map.context);
