@@ -18,7 +18,6 @@ game.map.Map = { // Constructer
 	},
 	addImage: function (name, imgId, x, y) { //Adds an image to the render que (name is render task name)
 		$Renderer.createTask(name, function(ctx){
-			if(imgId.includes("e")){console.log(imgId); console.log(x), console.log(y)}
 			ctx.drawImage(document.getElementById(imgId), x, y, $Map.tileSize, $Map.tileSize)
 			}
 		)
