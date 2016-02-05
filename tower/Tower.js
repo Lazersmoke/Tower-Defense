@@ -23,7 +23,7 @@ $Tower.tickTowers = function () {
 $Tower.prototype = {
 	constructor: $Tower,
 	tickTower: function () {
-		console.log(this.name + " got Ticked!");//Fire at enemies
+		//console.log(this.name + " got Ticked!");//Fire at enemies
 	},
 	renderTower: function (ctx) {
 		ctx.beginPath();
