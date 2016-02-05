@@ -1,5 +1,7 @@
 game.tower.BasicTower = function(tileX, tileY) {
-	$Tower.call(this, "Basic Tower", 25, 200, tileX, tileY);
+	$Tower.call(this, "Basic Tower", tileX, tileY);
+	this.maxRange = 200
+	this.fireSpeed = 25//In ticks of cooldown
 }
 var $BasicTower = game.tower.BasicTower;
 $BasicTower.prototype = Object.create($Tower.prototype);
@@ -23,7 +25,7 @@ $BasicTower.prototype.shoot = function () {
 		}
 	});
 	if(currClosest > -1 && this.cooldown == 0){
-		game.enemies.killEnemy(currClosest);
+		$Enemies.killEnemy(currClosest);
 		this.cooldown = this.fireSpeed
 	}
 }

@@ -6,6 +6,7 @@ var game = { // Master object
 	tower: {},
 	render: {},
 	map: {},
+	input: {},
 	
 	resetGame: function(){ //Resets Game
 		$Map.buildMap()
