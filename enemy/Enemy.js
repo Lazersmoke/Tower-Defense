@@ -11,14 +11,19 @@ var $Enemy = game.enemy.Enemy
 $Enemy.prototype = {
 	constructor: $Enemy,
 	enemyTick: function () { //Tick
+	
 		var oldX = this.x//Remeber current x and y to check for change later
 		var oldY = this.y
 		
+		//If we are at the end of the path of nodes, sapuku
 		if (this.nodeNum > this.nodeArray.length - 1) {
 			this.health = 0
+			$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + oldX + ", " + oldY)
 			return true
 		}
-		if (this.x != $Map.tileToPixel(this.nodeArray[this.nodeNum][0]) && this.type != "dead") { //If X need to change
+		
+		//Move on X axis
+		if (this.x != $Map.tileToPixel(this.nodeArray[this.nodeNum][0]) && this.health > 0) { //If X need to change
 			if (Math.abs(this.x - $Map.tileToPixel(this.nodeArray[this.nodeNum][0])) < this.speed) { //If X is closer than speed
 				this.x = $Map.tileToPixel(this.nodeArray[this.nodeNum][0])
 			}
@@ -31,7 +36,8 @@ $Enemy.prototype = {
 				}
 			}
 		}
-		if (this.y != $Map.tileToPixel(this.nodeArray[this.nodeNum][1]) && this.type != "dead") { //If Y need to change
+		//Move on Y axis
+		if (this.y != $Map.tileToPixel(this.nodeArray[this.nodeNum][1]) && this.health > 0) { //If Y need to change
 			if (Math.abs(this.y - $Map.tileToPixel(this.nodeArray[this.nodeNum][1])) < this.speed) { //If Y is closer than speed
 				this.y = $Map.tileToPixel(this.nodeArray[this.nodeNum][1])
 			}
@@ -45,6 +51,7 @@ $Enemy.prototype = {
 			}
 		}
 		
+		//If we reach a node, set next node up as target
 		if (this.x == $Map.tileToPixel(this.nodeArray[this.nodeNum][0]) && this.y == $Map.tileToPixel(this.nodeArray[this.nodeNum][1]) && this.nodeNum < this.nodeArray.length) { // If at node
 			this.nodeNum++
 		}
@@ -54,7 +61,7 @@ $Enemy.prototype = {
 		}
 		//If are not rendered now, render
 		if(!$Renderer.hasTask("[game.enemy.Enemy] Enemy at: " + this.x + ", " + this.y)){//If we are not already having a render object, add one
-			$Map.addImage("[game.enemy.Enemy] Enemy at: " + this.x + ", " + this.y, "enemy", this.x - ($Map.tileSize / 2), this.y - ($Map.tileSize / 2))
+			$Renderer.addImage("[game.enemy.Enemy] Enemy at: " + this.x + ", " + this.y, "enemy", this.x - ($Map.tileSize / 2), this.y - ($Map.tileSize / 2))
 		}
 	}
 }

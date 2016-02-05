@@ -1,5 +1,4 @@
 game.map.Map = { // Constructer
-	canvas: document.getElementById("map"),
 	tileSize: 64, //Sets object variables
 	width: 15,
 	height: 15,
@@ -16,15 +15,6 @@ game.map.Map = { // Constructer
 	pixelToTile: function(cord) {
 		return Math.round((cord / $Map.tileSize) - 0.5)
 	},
-	addImage: function (name, imgId, x, y) { //Adds an image to the render que (name is render task name)
-		$Renderer.createTask(name, function(ctx){
-			ctx.drawImage(document.getElementById(imgId), x, y, $Map.tileSize, $Map.tileSize)
-			}
-		)
-	},
-	removeImage: function (name) {
-		$Renderer.removeTask(name);
-	},
 	addTiles: function () { //Adds Tiles to Render Que
 		for (var x = 0; x < $Map.width; x++) {
 			for (var y = 0; y < $Map.height; y++) {
@@ -34,16 +24,16 @@ game.map.Map = { // Constructer
 	},
 
 	addTile: function (tileId, tileX, tileY) { //Adds a tile to the render que
-		$Map.addImage("[game.map] Tile at: " + String(tileX) + ", " + String(tileY), tileId, tileX * $Map.tileSize, tileY * $Map.tileSize)
+		$Renderer.addImage("[game.map] Tile at: " + String(tileX) + ", " + String(tileY), tileId, tileX * $Map.tileSize, tileY * $Map.tileSize)
 	},
 
 	clear: function () { //Clears canvas
 		$Map.context.clearRect(0, 0, $Map.canvas.width, $Map.canvas.height)
 	},
 
-        getNodeArray: function() {
-                return this.nodeArray
-        },
+	getNodeArray: function() {
+		return this.nodeArray
+	},
 
 	buildMap: function() {//TODO: procedural generation later(TM)
 		for (var x = 0; x < $Map.width; x++) {
@@ -67,6 +57,3 @@ game.map.Map = { // Constructer
 var $Map = game.map.Map
 
 //Setup
-$Map.canvas.width = $Map.width * $Map.tileSize //Width and height represented in tiles
-$Map.canvas.height = $Map.height * $Map.tileSize
-$Map.context = $Map.canvas.getContext("2d")
