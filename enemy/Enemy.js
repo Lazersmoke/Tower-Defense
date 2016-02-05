@@ -3,6 +3,8 @@ game.enemy.Enemy = function(level, x, y, nodeArray, speed) { // Constructer
 	this.health = 1
 	this.x = x
 	this.y = y
+	this.prevX = x
+	this.prevY = y
 	this.speed = speed
 	this.nodeArray = nodeArray
 	this.nodeNum = 0
@@ -12,13 +14,12 @@ $Enemy.prototype = {
 	constructor: $Enemy,
 	enemyTick: function () { //Tick
 	
-		var oldX = this.x//Remeber current x and y to check for change later
-		var oldY = this.y
-		
+		this.prevX = this.x//Remeber current x and y to check for change later
+		this.prevY = this.y
+		console.log("Level: " + this.level + " Health:" + this.health)
 		//If we are at the end of the path of nodes, sapuku
 		if (this.nodeNum > this.nodeArray.length - 1) {
 			this.health = 0
-			$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + oldX + ", " + oldY)
 			return true
 		}
 		
@@ -56,8 +57,8 @@ $Enemy.prototype = {
 			this.nodeNum++
 		}
 		//If we moved, delete old render task
-		if(oldX != this.x || oldY != this.y){
-			$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + oldX + ", " + oldY)
+		if(this.prevX != this.x || this.prevY != this.y){
+			$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + this.prevX + ", " + this.prevY)
 		}
 		//If are not rendered now, render
 		if(!$Renderer.hasTask("[game.enemy.Enemy] Enemy at: " + this.x + ", " + this.y)){//If we are not already having a render object, add one

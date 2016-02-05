@@ -11,7 +11,7 @@
 			<img id="tower" src="Images/tower.png">
 		</div>
 		<button onclick="game.tick()">TICK</button>
-		<button onclick="$Enemies.spawnEnemy ('John Cena', $Map.tileToPixel($Map.nodeArray[0][0]), $Map.tileToPixel($Map.nodeArray[0][1]), $Map.nodeArray, 5)">SPAWN JOHN CENA!</button>
+		<button onclick="$Enemies.spawnEnemy (Math.random(), $Map.tileToPixel($Map.nodeArray[0][0]), $Map.tileToPixel($Map.nodeArray[0][1]), $Map.nodeArray, 5)">SPAWN JOHN CENA!</button>
 	</body>
 	<script>var game = game || {};</script>
 	<script src="Game.js"></script>
