@@ -16,7 +16,6 @@ $Enemy.prototype = {
 	
 		this.prevX = this.x//Remeber current x and y to check for change later
 		this.prevY = this.y
-		console.log("Level: " + this.level + " Health:" + this.health)
 		//If we are at the end of the path of nodes, sapuku
 		if (this.nodeNum > this.nodeArray.length - 1) {
 			this.health = 0

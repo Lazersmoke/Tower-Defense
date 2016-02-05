@@ -33,7 +33,7 @@ $Renderer.removeTask = function (name) {
 $Renderer.hasTask = function (name) {
 	var found = false
 	$Renderer.renderQue.forEach(function(a,b){
-		if(a.name == name){found = true; console.log("found")}
+		if(a.name == name){found = true}
 	});
 	return found;
 }
