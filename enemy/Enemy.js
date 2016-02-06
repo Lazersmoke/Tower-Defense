@@ -1,6 +1,6 @@
 game.enemy.Enemy = function(level, tilePos, nodeArray) { // Constructer
 	this.level = level
-	this.health = 1 + Math.floor(level / 5)
+	this.health = 1 + Math.floor(level / 3)
 	this.speed = 0.02 + (level / 200)
 	this.tilePos = tilePos
 	this.nodeArray = nodeArray

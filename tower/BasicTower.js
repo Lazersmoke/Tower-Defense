@@ -2,7 +2,6 @@ game.tower.BasicTower = function(tilePos) {
 	$Tower.call(this, "Basic Tower", tilePos);
 	this.maxRange = 2.5
 	this.fireSpeed = 25//In ticks of cooldown
-	this.cooldown = 0
 }
 var $BasicTower = game.tower.BasicTower;
 $BasicTower.cost = 100
@@ -41,8 +40,10 @@ $BasicTower.prototype.shoot = function () {
 			}, this, 30))
 		}
 		this.lastTargetTilePos = $Enemies.enemiesArray[currClosest].tilePos
-		$Enemies.killEnemy(currClosest);
-		$Enemies.killReward($Enemies.enemiesArray[currClosest].level)
+		$Enemies.damageEnemy(currClosest, 1);
+		if ($Enemies.enemiesArray[currClosest].health == 0) {
+			$Enemies.killReward($Enemies.enemiesArray[currClosest].level)
+		}
 		this.cooldown = this.fireSpeed
 	}
 }
