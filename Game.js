@@ -1,6 +1,6 @@
-
 var game = { // Master object
-	tickRate: 60,
+	tickRate: 60, 
+	money: 150,
 	//Packages:
 	enemy: {},
 	tower: {},
@@ -31,6 +31,21 @@ var game = { // Master object
 	postTick: function(){
 		$Enemies.enemiesPostTick()
 		$Map.UITick();
-	}
+	},
+	addMoney: function (amount) {
+		$Game.money += amount
+	},
+	removeMoney: function (amount) {
+		if (amount > $Game.money) {
+			return false
+		}
+		else {
+			$Game.money -= amount
+			return true
+		}
+	},
+	getMoney: function () {
+		return $Game.money
+	},
 }
 var $Game = game

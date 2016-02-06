@@ -10,8 +10,8 @@
 			<img id="enemy" src="Images/enemy.png">
 			<img id="tower" src="Images/tower.png">
 		</div>
-		<button onclick="game.tick()">TICK</button>
-		<button onclick="$Enemies.spawnEnemy (Math.random(), $Map.nodeArray[0], $Map.nodeArray, 0.1)">SPAWN JOHN CENA!</button>
+		<button onclick="$Enemies.spawnEnemy (1, $Map.nodeArray[0], $Map.nodeArray)">SPAWN JOHN CENA!</button>
+		<span style="position:absolute; top:25px; left: 25px;">Money: $0</span>
 		<script>var game = game || {}; </script>
 		<script src="Game.js"></script>
 		<script src="enemy/Enemy.js"></script>
