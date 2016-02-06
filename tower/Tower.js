@@ -4,7 +4,6 @@ game.tower.Tower = function(name, tilePos) {
 	}
 	this.name = name;
 	this.tilePos = tilePos;
-	this.cooldown = 0;
 	$Tower.towerList.push(this);
 	$Renderer.addImage("[game.tower.Tower] " + this.name + " at: " + this.tilePos, "tower", $Map.tileToPixel(this.tilePos.x) - ($Map.tileSize / 2), $Map.tileToPixel(this.tilePos.y) - ($Map.tileSize / 2))
 	$Renderer.addTask(new $RenderTask("[game.tower.Tower] " + this.name + " range radius at: " + this.tilePos, this.renderTower, this))
@@ -41,7 +40,7 @@ $Tower.removeTower = function (tilePos){
 $Tower.prototype = {
 	constructor: $Tower,
 	tickTower: function () {
-		//console.log(this.name + " got Ticked!");//Fire at enemies
+		//Fire at enemies
 	},
 	renderTower: function (ctx) {
 		ctx.beginPath();//Renders a range radius
