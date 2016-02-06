@@ -7,7 +7,7 @@ game.enemy.Enemies = {
 		$Enemies.enemiesArray[id].health = 0
 	},
 	enemiesTick: function () {
-		for (i in $Enemies.enemiesArray) {
+		for (var i in $Enemies.enemiesArray) {
 			$Enemies.enemiesArray[i].enemyTick()
 		}
 	},

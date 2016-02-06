@@ -47,6 +47,17 @@ $Renderer.addImage = function (renderTaskName, imgId, x, y) {
 	)
 }
 
+$Renderer.onTick = function () {
+	$Renderer.renderQue.forEach(function(task){
+		if(task.lifespan == 0){
+			$Renderer.removeTask(task.name)
+		}
+		else if(task.lifespan > 0){
+			task.lifespan--
+		}
+	})
+}
+
 //Render all the renderTasks in the que
 $Renderer.render = function () { 
 	//This function is literally magic

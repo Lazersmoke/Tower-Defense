@@ -18,13 +18,21 @@ $BasicTower.prototype.shoot = function () {
 	var currClosest = -1;
 	var currClosestDist = 100000;
 	$Enemies.enemiesArray.forEach(function(a, b){
-		range = $Tower.distance(a.tilePos,mySelf.tilePos);
+		range = $TilePos.distance(a.tilePos,mySelf.tilePos);
 		if(range < currClosestDist && range < mySelf.maxRange){
 			currClosestDist = range
 			currClosest = b;
 		}
 	});
 	if(currClosest > -1 && this.cooldown == 0){
+		$Renderer.addTask(new $RenderTask("[game.tower.BasicTower] Basic Tower Laser from " + this.tilePos + " to " + $Enemies.enemiesArray[currClosest].tilePos, 
+		function(ctx){
+			ctx.beginPath()
+			ctx.moveTo($Map.tileToPixel(this.tilePos.x), $Map.tileToPixel(this.tilePos.y))
+			ctx.lineTo($Map.tileToPixel(this.lastTargetTilePos.x), $Map.tileToPixel(this.lastTargetTilePos.y))
+			ctx.stroke()
+		}, this, 30))
+		this.lastTargetTilePos = $Enemies.enemiesArray[currClosest].tilePos
 		$Enemies.killEnemy(currClosest);
 		this.cooldown = this.fireSpeed
 	}
