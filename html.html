@@ -3,24 +3,26 @@
 		<title>Tower Defense Game</title>
 	</head>
 	<body>
-		<canvas id="map" onclick="$InputHandler.handleCanvasClick()"></canvas>
-		<div id="imgs"style="display:none;">
+		<canvas id="map"></canvas>
+		<div id="imgs" style="display:none;">
 			<img id="grass" src="Images/grass.png">
 			<img id="path" src="Images/path.png">
 			<img id="enemy" src="Images/enemy.png">
 			<img id="tower" src="Images/tower.png">
 		</div>
 		<button onclick="game.tick()">TICK</button>
-		<button onclick="$Enemies.spawnEnemy ('John Cena', $Map.tileToPixel($Map.nodeArray[0][0]), $Map.tileToPixel($Map.nodeArray[0][1]), $Map.nodeArray, 5)">SPAWN JOHN CENA!</button>
+		<button onclick="$Enemies.spawnEnemy (Math.random(), $Map.nodeArray[0], $Map.nodeArray, 0.1)">SPAWN JOHN CENA!</button>
+		<script>var game = game || {}; </script>
+		<script src="Game.js"></script>
+		<script src="enemy/Enemy.js"></script>
+		<script src="enemy/Enemies.js"></script>
+		<script src="map/Map.js"></script>
+		<script src="map/TilePos.js"></script>
+		<script src="tower/Tower.js"></script>
+		<script src="tower/BasicTower.js"></script>
+		<script src="render/RenderTask.js"></script>
+		<script src="render/Renderer.js"></script>
+		<script src="input/InputHandler.js"></script>
+		<script src="script.js"></script>
 	</body>
-	<script>var game = game || {};</script>
-	<script src="Game.js"></script>
-	<script src="enemy/Enemy.js"></script>
-	<script src="enemy/Enemies.js"></script>
-	<script src="map/Map.js"></script>
-	<script src="tower/Tower.js"></script>
-	<script src="tower/BasicTower.js"></script>
-	<script src="render/RenderTask.js"></script>
-	<script src="render/Renderer.js"></script>
-	<script src="script.js"></script>
 </html> 

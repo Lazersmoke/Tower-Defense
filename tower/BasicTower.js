@@ -1,5 +1,7 @@
-game.tower.BasicTower = function(tileX, tileY) {
-	$Tower.call(this, "Basic Tower", 25, 200, tileX, tileY);
+game.tower.BasicTower = function(tilePos) {
+	$Tower.call(this, "Basic Tower", tilePos);
+	this.maxRange = 2.5
+	this.fireSpeed = 25//In ticks of cooldown
 }
 var $BasicTower = game.tower.BasicTower;
 $BasicTower.prototype = Object.create($Tower.prototype);
@@ -16,14 +18,22 @@ $BasicTower.prototype.shoot = function () {
 	var currClosest = -1;
 	var currClosestDist = 100000;
 	$Enemies.enemiesArray.forEach(function(a, b){
-		range = distance(a.x,a.y,$Map.tileToPixel(mySelf.tileX),$Map.tileToPixel(mySelf.tileY));
+		range = $TilePos.distance(a.tilePos,mySelf.tilePos);
 		if(range < currClosestDist && range < mySelf.maxRange){
 			currClosestDist = range
 			currClosest = b;
 		}
 	});
 	if(currClosest > -1 && this.cooldown == 0){
-		game.enemies.killEnemy(currClosest);
+		$Renderer.addTask(new $RenderTask("[game.tower.BasicTower] Basic Tower Laser from " + this.tilePos + " to " + $Enemies.enemiesArray[currClosest].tilePos, 
+		function(ctx){
+			ctx.beginPath()
+			ctx.moveTo($Map.tileToPixel(this.tilePos.x), $Map.tileToPixel(this.tilePos.y))
+			ctx.lineTo($Map.tileToPixel(this.lastTargetTilePos.x), $Map.tileToPixel(this.lastTargetTilePos.y))
+			ctx.stroke()
+		}, this, 30))
+		this.lastTargetTilePos = $Enemies.enemiesArray[currClosest].tilePos
+		$Enemies.killEnemy(currClosest);
 		this.cooldown = this.fireSpeed
 	}
 }

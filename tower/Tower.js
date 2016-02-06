@@ -1,12 +1,13 @@
-game.tower.Tower = function(name, fireSpeed, maxRange, tileX, tileY) {
+game.tower.Tower = function(name, tilePos) {
+	if(!$Tower.validLocation(tilePos)){
+		throw "Invalid tower location"
+	}
 	this.name = name;
-	this.maxRange = maxRange
-	this.fireSpeed = fireSpeed;//In ticks of cooldown
-	this.tileX = tileX;
-	this.tileY = tileY;
+	this.tilePos = tilePos;
 	this.cooldown = 0;
 	$Tower.towerList.push(this);
-	$Renderer.addTask(new $RenderTask("[game.tower.Tower] Tower at: " + this.tileX + ", " + this.tileY, this.renderTower, this))
+	$Renderer.addImage("[game.tower.Tower] " + this.name + " at: " + this.tilePos, "tower", $Map.tileToPixel(this.tilePos.x) - ($Map.tileSize / 2), $Map.tileToPixel(this.tilePos.y) - ($Map.tileSize / 2))
+	$Renderer.addTask(new $RenderTask("[game.tower.Tower] " + this.name + " range radius at: " + this.tilePos, this.renderTower, this))
 }
 var $Tower = game.tower.Tower;
 $Tower.towerList = [];
@@ -20,18 +21,34 @@ $Tower.tickTowers = function () {
 		a.tickTower();
 	});
 }
+$Tower.towerAt = function (tilePos){
+	var returnValue = null
+	$Tower.towerList.forEach(function(a){
+		if($TilePos.matches(a.tilePos, tilePos)){
+			returnValue = a;
+		}
+	});
+	return returnValue
+}
+$Tower.validLocation = function(tilePos){
+	return $Tower.towerAt(tilePos) == null && $Map.tileArray[Math.floor(tilePos.x)][Math.floor(tilePos.y)] != "path"
+}
+$Tower.removeTower = function (tilePos){
+	$Renderer.removeTask("[game.tower.Tower] " + $Tower.towerAt(tilePos).name + " at: " + tilePos)
+	$Renderer.removeTask("[game.tower.Tower] " + $Tower.towerAt(tilePos).name + " range radius at: " + tilePos)
+	$Tower.towerList.splice($Tower.towerList.indexOf($Tower.towerAt(tilePos)), 1)
+}
 $Tower.prototype = {
 	constructor: $Tower,
 	tickTower: function () {
-		console.log(this.name + " got Ticked!");//Fire at enemies
+		//console.log(this.name + " got Ticked!");//Fire at enemies
 	},
 	renderTower: function (ctx) {
-		ctx.beginPath();
-		ctx.arc($Map.tileToPixel(this.tileX),$Map.tileToPixel(this.tileY),this.maxRange,0,2*Math.PI);
+		ctx.beginPath();//Renders a range radius
+		ctx.arc($Map.tileToPixel(this.tilePos.x),$Map.tileToPixel(this.tilePos.y),$Map.tileToPixel(this.maxRange),0,2*Math.PI);
 		ctx.stroke();
+	},
+	removeTower: function () {
+		$Tower.removeTower(this.tilePos)
 	}
-}
-
-function distance(xa,ya,xb,yb){
-	return Math.sqrt(Math.pow((xa-xb),2)+Math.pow((ya-yb),2))
 }
