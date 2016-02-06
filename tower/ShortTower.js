@@ -41,8 +41,10 @@ $ShortTower.prototype.shoot = function () {
 			}, this, 5))
 		}
 		this.lastTargetTilePos = $Enemies.enemiesArray[currClosest].tilePos
-		$Enemies.killEnemy(currClosest);
-		$Enemies.killReward($Enemies.enemiesArray[currClosest].level)
+		$Enemies.damageEnemy(currClosest, 1);
+		if ($Enemies.enemiesArray[currClosest].health == 0) {
+			$Enemies.killReward($Enemies.enemiesArray[currClosest].level)
+		}
 		this.cooldown = this.fireSpeed
 	}
 }

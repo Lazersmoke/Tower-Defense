@@ -7,8 +7,13 @@ game.enemy.Enemies = {
 	spawnEnemy: function (level, tilePos, nodeArray, speed) {
 		$Enemies.enemiesArray.push(new $Enemy(level, tilePos, nodeArray, speed))
 	},
-	killEnemy: function (id) {
-		$Enemies.enemiesArray[id].health = 0
+	damageEnemy: function (id, amount) {
+		if (amount > $Enemies.enemiesArray[id].health) {
+			$Enemies.enemiesArray[id].health = 0
+		}
+		else  {
+			$Enemies.enemiesArray[id].health -= amount
+		}
 	},
 	killReward: function (lvl) {
 		$Game.addMoney(lvl)
@@ -23,7 +28,7 @@ game.enemy.Enemies = {
 			if ($Enemies.spawnCooldown == 0) {
 				$Enemies.spawnEnemy ($Enemies.wave, $Map.nodeArray[0], $Map.nodeArray)
 				$Enemies.enemiesLeft--
-				$Enemies.spawnCooldown = 20
+				$Enemies.spawnCooldown = Math.round(100 / (4 + Math.sqrt($Enemies.wave)))
 			}
 			else {
 				$Enemies.spawnCooldown--
@@ -33,7 +38,7 @@ game.enemy.Enemies = {
 			if ($Enemies.ready) {
 				$Enemies.wave++
 				document.getElementById("wave").innerHTML = "Wave: " + $Enemies.wave
-				$Enemies.enemiesLeft = 100 + ($Enemies.wave * 20)
+				$Enemies.enemiesLeft = 80 + ($Enemies.wave * 20)
 				$Enemies.ready = false
 			}
 		}
