@@ -42,6 +42,7 @@ $BasicTower.prototype.shoot = function () {
 		}
 		this.lastTargetTilePos = $Enemies.enemiesArray[currClosest].tilePos
 		$Enemies.killEnemy(currClosest);
+		$Enemies.killReward($Enemies.enemiesArray[currClosest].level)
 		this.cooldown = this.fireSpeed
 	}
 }
