@@ -34,6 +34,7 @@ var game = { // Master object
 	},
 	addMoney: function (amount) {
 		$Game.money += amount
+		document.getElementById("money").innerHTML = "Money: $" + $Game.money
 	},
 	removeMoney: function (amount) {
 		if (amount > $Game.money) {
@@ -41,6 +42,7 @@ var game = { // Master object
 		}
 		else {
 			$Game.money -= amount
+			document.getElementById("money").innerHTML = "Money: $" + $Game.money
 			return true
 		}
 	},
