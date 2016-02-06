@@ -1,4 +1,7 @@
 game.tower.Tower = function(name, tilePos) {
+	if(!$Tower.validLocation(tilePos)){
+		throw "Invalid tower location"
+	}
 	this.name = name;
 	this.tilePos = tilePos;
 	this.cooldown = 0;
@@ -30,6 +33,11 @@ $Tower.towerAt = function (tilePos){
 $Tower.validLocation = function(tilePos){
 	return $Tower.towerAt(tilePos) == null && $Map.tileArray[Math.floor(tilePos.x)][Math.floor(tilePos.y)] != "path"
 }
+$Tower.removeTower = function (tilePos){
+	$Renderer.removeTask("[game.tower.Tower] " + $Tower.towerAt(tilePos).name + " at: " + tilePos)
+	$Renderer.removeTask("[game.tower.Tower] " + $Tower.towerAt(tilePos).name + " range radius at: " + tilePos)
+	$Tower.towerList.splice($Tower.towerList.indexOf($Tower.towerAt(tilePos)), 1)
+}
 $Tower.prototype = {
 	constructor: $Tower,
 	tickTower: function () {
@@ -39,6 +47,9 @@ $Tower.prototype = {
 		ctx.beginPath();//Renders a range radius
 		ctx.arc($Map.tileToPixel(this.tilePos.x),$Map.tileToPixel(this.tilePos.y),$Map.tileToPixel(this.maxRange),0,2*Math.PI);
 		ctx.stroke();
+	},
+	removeTower: function () {
+		$Tower.removeTower(this.tilePos)
 	}
 }
 
