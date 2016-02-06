@@ -38,7 +38,7 @@ game.enemy.Enemies = {
 			if ($Enemies.ready) {
 				$Enemies.wave++
 				document.getElementById("wave").innerHTML = "Wave: " + $Enemies.wave
-				$Enemies.enemiesLeft = 80 + ($Enemies.wave * 20)
+				$Enemies.enemiesLeft = 30 + ($Enemies.wave * 10)
 				$Enemies.ready = false
 			}
 		}
