@@ -52,7 +52,3 @@ $Tower.prototype = {
 		$Tower.removeTower(this.tilePos)
 	}
 }
-
-$Tower.distance = function (tilePosA, tilePosB){
-	return Math.sqrt(Math.pow((tilePosA.x - tilePosB.x),2)+Math.pow((tilePosA.y - tilePosB.y),2))
-}

@@ -1,7 +1,6 @@
-$Map.buildMap()
-$Map.addTiles()
+$Game.startGame()
 setInterval($Game.tick, (1000 / $Game.tickRate))
-$Renderer.render()
+$Renderer.render()//Start render loop
 
 /*Namespace setup:
 game

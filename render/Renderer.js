@@ -49,7 +49,7 @@ $Renderer.addImage = function (renderTaskName, imgId, x, y) {
 
 $Renderer.onTick = function () {
 	$Renderer.renderQue.forEach(function(task){
-		if(task.lifespan = 0){
+		if(task.lifespan == 0){
 			$Renderer.removeTask(task.name)
 		}
 		else if(task.lifespan > 0){
