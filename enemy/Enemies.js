@@ -1,7 +1,7 @@
 game.enemy.Enemies = {
 	enemiesArray: [],
-	spawnEnemy: function (level, x, y, nodeArray, speed) {
-		$Enemies.enemiesArray.push(new $Enemy(level, x, y, nodeArray, speed))
+	spawnEnemy: function (level, tilePos, nodeArray, speed) {
+		$Enemies.enemiesArray.push(new $Enemy(level, tilePos, nodeArray, speed))
 	},
 	killEnemy: function (id) {
 		$Enemies.enemiesArray[id].health = 0
@@ -16,8 +16,9 @@ game.enemy.Enemies = {
 		for (var j = 0; j < $Enemies.enemiesArray.length; j++) {
 			//Remove enemys with 0 health (AKA dead)
 			if ($Enemies.enemiesArray[j].health == 0) {
-				//Remove Render Task on death
-				$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + $Enemies.enemiesArray[j].prevX + ", " + $Enemies.enemiesArray[j].prevY)
+				if($Renderer.hasTask("[game.enemy.Enemy] Enemy at: " + $Enemies.enemiesArray[j].tilePos)){
+					$Renderer.removeTask("[game.enemy.Enemy] Enemy at: " + $Enemies.enemiesArray[j].tilePos)
+				}
 			}
 		}
 		//Loop through all enemies (for removing enemies from array)

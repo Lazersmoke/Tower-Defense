@@ -11,13 +11,14 @@
 			<img id="tower" src="Images/tower.png">
 		</div>
 		<button onclick="game.tick()">TICK</button>
-		<button onclick="$Enemies.spawnEnemy (Math.random(), $Map.tileToPixel($Map.nodeArray[0][0]), $Map.tileToPixel($Map.nodeArray[0][1]), $Map.nodeArray, 5)">SPAWN JOHN CENA!</button>
+		<button onclick="$Enemies.spawnEnemy (Math.random(), $Map.nodeArray[0], $Map.nodeArray, 0.1)">SPAWN JOHN CENA!</button>
 	</body>
 	<script>var game = game || {};</script>
 	<script src="Game.js"></script>
 	<script src="enemy/Enemy.js"></script>
 	<script src="enemy/Enemies.js"></script>
 	<script src="map/Map.js"></script>
+	<script src="map/TilePos.js"></script>
 	<script src="tower/Tower.js"></script>
 	<script src="tower/BasicTower.js"></script>
 	<script src="render/RenderTask.js"></script>

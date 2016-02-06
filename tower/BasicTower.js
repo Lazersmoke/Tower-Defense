@@ -1,6 +1,6 @@
-game.tower.BasicTower = function(tileX, tileY) {
-	$Tower.call(this, "Basic Tower", tileX, tileY);
-	this.maxRange = 200
+game.tower.BasicTower = function(tilePos) {
+	$Tower.call(this, "Basic Tower", tilePos);
+	this.maxRange = 2.5
 	this.fireSpeed = 25//In ticks of cooldown
 }
 var $BasicTower = game.tower.BasicTower;
@@ -18,7 +18,7 @@ $BasicTower.prototype.shoot = function () {
 	var currClosest = -1;
 	var currClosestDist = 100000;
 	$Enemies.enemiesArray.forEach(function(a, b){
-		range = distance(a.x,a.y,$Map.tileToPixel(mySelf.tileX),$Map.tileToPixel(mySelf.tileY));
+		range = $Tower.distance(a.tilePos,mySelf.tilePos);
 		if(range < currClosestDist && range < mySelf.maxRange){
 			currClosestDist = range
 			currClosest = b;
