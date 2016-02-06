@@ -18,13 +18,13 @@ game.map.Map = { // Constructer
 	addTiles: function () { //Adds Tiles to Render Que
 		for (var x = 0; x < $Map.width; x++) {
 			for (var y = 0; y < $Map.height; y++) {
-				$Map.addTile($Map.tileArray[x][y], x, y)
+				$Map.addTile($Map.tileArray[x][y], new $TilePos(x, y))
 			}
 		}
 	},
 
-	addTile: function (tileId, tileX, tileY) { //Adds a tile to the render que
-		$Renderer.addImage("[game.map] Tile at: " + String(tileX) + ", " + String(tileY), tileId, tileX * $Map.tileSize, tileY * $Map.tileSize)
+	addTile: function (tileId, tilePos) { //Adds a tile to the render que
+		$Renderer.addImage("[game.map] Tile at: " + tilePos, tileId, tilePos.x * $Map.tileSize, tilePos.y * $Map.tileSize)
 	},
 
 	clear: function () { //Clears canvas
@@ -51,7 +51,7 @@ game.map.Map = { // Constructer
 		for (var i = 9; i < 15; i++) {
 			$Map.tileArray[4][i] = "path"
 		}
-		$Map.nodeArray = [[12, 0], [12, 8], [4, 8], [4, 14]] //Sets location of nodes
+		$Map.nodeArray = [new $TilePos(12, 0), new $TilePos(12, 8), new $TilePos(4, 8), new $TilePos(4, 14)] //Sets location of nodes
 	}
 }
 var $Map = game.map.Map
