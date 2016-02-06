@@ -1,8 +1,8 @@
-game.enemy.Enemy = function(level, tilePos, nodeArray, speed) { // Constructer
+game.enemy.Enemy = function(level, tilePos, nodeArray) { // Constructer
 	this.level = level
-	this.health = 1
+	this.health = 1 + Math.floor(level / 5)
+	this.speed = 0.02 + (level / 200)
 	this.tilePos = tilePos
-	this.speed = speed
 	this.nodeArray = nodeArray
 	this.nodeNum = 0
 }
@@ -46,23 +46,3 @@ $Enemy.prototype = {
 		return this.nodeArray[this.nodeNum]
 	}
 }
-
-
-
-//Old Enemy Code
-		/*//Move on X axis
-		if (this.tilePos.x != this.nextNode().x && this.health > 0) { //If X need to change
-			if (Math.abs(this.tilePos.x - this.nextNode().x) < this.speed) { //If X is closer than speed
-				this.moveAbsolute(new $TilePos(this.nextNode().x, this.tilePos.y))
-			} else { //Move full speed
-				this.moveRelative(new $TilePos(this.tilePos.x < this.nextNode().x ? this.speed : -this.speed, 0))
-			}
-		}
-		//Move on Y axis
-		if (this.tilePos.y != this.nextNode().y && this.health > 0) { //If Y need to change
-			if (Math.abs(this.tilePos.y - this.nextNode().y) < this.speed) { //If Y is closer than speed
-				this.moveAbsolute(new $TilePos(this.tilePos.x, this.nextNode().y))
-			} else { //Move full speed
-				this.moveRelative(new $TilePos(0, this.tilePos.y < this.nextNode().y ? this.speed : -this.speed))
-			}
-		}*/

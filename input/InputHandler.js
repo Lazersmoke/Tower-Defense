@@ -3,11 +3,13 @@ game.input.InputHandler = {
 		if(evt){
 			var x = evt.offsetX
 			var y = evt.offsetY
-			if($Tower.validLocation(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y)))){
-				new $BasicTower(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y)))
-			}
-			else if($Tower.towerAt(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y))) != null){
-				$Tower.towerAt(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y))).removeTower()
+			if ($Game.removeMoney(100)) {
+				if($Tower.validLocation(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y)))){
+					new $BasicTower(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y)))
+				}
+				else if($Tower.towerAt(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y))) != null){
+					$Tower.towerAt(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y))).removeTower()
+				}	
 			}
 		}
 	}

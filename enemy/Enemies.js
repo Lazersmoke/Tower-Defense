@@ -6,6 +6,9 @@ game.enemy.Enemies = {
 	killEnemy: function (id) {
 		$Enemies.enemiesArray[id].health = 0
 	},
+	killReward: function (lvl) {
+		$Game.addMoney(lvl)
+	},
 	enemiesTick: function () {
 		for (var i in $Enemies.enemiesArray) {
 			$Enemies.enemiesArray[i].enemyTick()
@@ -26,6 +29,7 @@ game.enemy.Enemies = {
 			//Remove enemys with 0 health (AKA dead)
 			if ($Enemies.enemiesArray[i].health == 0) {
 				//Remove Render Task on death
+				$Enemies.killReward($Enemies.enemiesArray[i].level)
 				$Enemies.enemiesArray.splice(i, 1)
 			}
 		}
