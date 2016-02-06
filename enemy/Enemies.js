@@ -1,5 +1,9 @@
 game.enemy.Enemies = {
 	enemiesArray: [],
+	wave: 0,
+	spawnCooldown: 0,
+	enemiesLeft: 0,
+	ready: false,
 	spawnEnemy: function (level, tilePos, nodeArray, speed) {
 		$Enemies.enemiesArray.push(new $Enemy(level, tilePos, nodeArray, speed))
 	},
@@ -9,7 +13,33 @@ game.enemy.Enemies = {
 	killReward: function (lvl) {
 		$Game.addMoney(lvl)
 	},
+	setReady: function () {
+		if ($Enemies.enemiesLeft == 0) {
+			$Enemies.ready = true
+		}
+	},
+	waveTick: function () {
+		if ($Enemies.enemiesLeft > 0) {
+			if ($Enemies.spawnCooldown == 0) {
+				$Enemies.spawnEnemy ($Enemies.wave, $Map.nodeArray[0], $Map.nodeArray)
+				$Enemies.enemiesLeft--
+				$Enemies.spawnCooldown = 20
+			}
+			else {
+				$Enemies.spawnCooldown--
+			}
+		}
+		else {
+			if ($Enemies.ready) {
+				$Enemies.wave++
+				document.getElementById("wave").innerHTML = "Wave: " + $Enemies.wave
+				$Enemies.enemiesLeft = 100 + ($Enemies.wave * 20)
+				$Enemies.ready = false
+			}
+		}
+	},
 	enemiesTick: function () {
+		$Enemies.waveTick()
 		for (var i in $Enemies.enemiesArray) {
 			$Enemies.enemiesArray[i].enemyTick()
 		}
