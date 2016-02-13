@@ -4,11 +4,9 @@ game.input.InputHandler = {
 		if(evt){
 			var x = evt.offsetX
 			var y = evt.offsetY
-			if ($Game.removeMoney($InputHandler.towerToPlace.cost)) {
-				if($InputHandler.towerToPlace.validLocation(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y)))){
-					new $InputHandler.towerToPlace(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y)))
-					return
-				}
+			if($InputHandler.towerToPlace.validLocation(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y))) && $Game.removeMoney($InputHandler.towerToPlace.cost)){
+				new $InputHandler.towerToPlace(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y)))
+				return
 			}
 			if($Tower.towerAt(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y))) != null){
 				$Tower.towerAt(new $TilePos($Map.pixelToTile(x), $Map.pixelToTile(y))).removeTower()
