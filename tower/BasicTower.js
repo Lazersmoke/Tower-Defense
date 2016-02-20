@@ -1,7 +1,8 @@
 game.tower.BasicTower = function(tilePos) {
 	$Tower.call(this, "Basic Tower", tilePos);
-	this.maxRange = 2.5
+	this.maxRange = 2
 	this.fireSpeed = 25//In ticks of cooldown
+	this.cooldown = 0
 }
 var $BasicTower = game.tower.BasicTower;
 $BasicTower.cost = 100

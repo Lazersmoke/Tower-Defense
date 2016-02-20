@@ -1,11 +1,11 @@
 game.tower.ShortTower = function(tilePos) {
 	$Tower.call(this, "Short Tower", tilePos);
-	this.maxRange = 2
-	this.fireSpeed = 10//In ticks of cooldown
+	this.maxRange = 1.5
+	this.fireSpeed = 20//In ticks of cooldown
 	this.cooldown = 0
 }
 var $ShortTower = game.tower.ShortTower;
-$ShortTower.cost = 50
+$ShortTower.cost = 80
 $ShortTower.validLocation = function(tilePos){
 	return $Tower.towerAt(tilePos) == null && $Map.tileArray[Math.floor(tilePos.x)][Math.floor(tilePos.y)] != "path"
 }

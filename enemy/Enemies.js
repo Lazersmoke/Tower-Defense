@@ -4,7 +4,17 @@ game.enemy.Enemies = {
 	spawnCooldown: 0,
 	enemiesLeft: 0,
 	ready: false,
-	spawnEnemy: function (level, tilePos, nodeArray, speed) {
+	spawnEnemy: function (wave, tilePos, nodeArray, speed) {
+		rand = Math.floor(Math.random() * 100)
+		if (rand < 10) {
+			level = Math.floor((wave + 2) / 3) + 1
+		}
+		else if (rand < 35) {
+			level = Math.floor((wave + 1) / 3) + 1
+		}
+		else {
+			level = Math.floor(wave / 3) + 1
+		}
 		$Enemies.enemiesArray.push(new $Enemy(level, tilePos, nodeArray, speed))
 	},
 	damageEnemy: function (id, amount) {
